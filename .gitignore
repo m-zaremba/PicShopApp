@@ -7,6 +7,23 @@ package-lock.json
 node_modules/
 .sass-cache/
 
+# dependencies
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
 ### OSX ###
 .DS_Store
 .AppleDouble
@@ -14,14 +31,6 @@ node_modules/
 
 ### Linux ###
 *~
-
-### Code ###
-# Visual Studio Code - https://code.visualstudio.com/
-.settings/
-.vscode/
-
-### Webstorm ###
-.idea/
 
 ### Other ###
 .test/
