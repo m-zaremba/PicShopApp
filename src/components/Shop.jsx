@@ -14,7 +14,7 @@ class Shop extends React.Component {
 
        let itemList = this.props.items.map(item=>{
             return(
-                <div key={item.id}>
+                <div key={item.id} style={{marginTop: '58px'}}>
                   <div>
                     <img src={item.img} alt={item.title}/>
                     <span>{item.title}</span>

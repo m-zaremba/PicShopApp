@@ -4,13 +4,14 @@ import styled from 'styled-components';
 
 import { MdShoppingCart } from "react-icons/md";
 
-const Navbar = () => {
+// import DrawerButton from './DrawerButton';
 
-  return(
+const Navbar = props => (
 
     <NavBar>
       <Wrapper>
-        <Link to='/'>Logo</Link>
+        {/* <div><DrawerButton click={props.hamburgerClick} /></div> */}
+        <Link to='/'>The Logo</Link>
 
         <NavList>
           <NavLink><Link to='/'>Home</Link></NavLink>
@@ -20,15 +21,19 @@ const Navbar = () => {
       </Wrapper>
     </NavBar>
 
-  )
 
-}
+)
 
 export default Navbar;
 
 const NavBar = styled.nav`
   background-color: yellow;
   margin: 0 auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
 `
 
 const Wrapper = styled.div`
