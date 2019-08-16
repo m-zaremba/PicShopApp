@@ -31,49 +31,50 @@ class SideDrawer extends React.Component {
    }
 
    render(){
-     const homeText = this.state.homeText;
-     const shopText = this.state.shopText;
-     const cartText = this.state.cartText;
+     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+     let homeText;
+     let shopText;
+     let cartText;
+
+     if (isMobile) {
+       homeText = 'Home';
+       shopText = 'Shop';
+       cartText = 'Cart';
+     } else {
+       homeText = this.state.homeText;
+       shopText = this.state.shopText;
+       cartText = this.state.cartText;
+     }
+
+
+     const navBody =
+     <><NavBtnWrapper>
+       <DrawerButton click={this.props.hamburgerClick} />
+     </NavBtnWrapper>
+       <NavList>
+         <NavLink className='first' onClick={this.props.click} onMouseOver={this.onMouseover}
+           onMouseLeave={this.onMouseout}><StyledLink to='/'>{homeText}</StyledLink></NavLink>
+         <NavLink className='second' onClick={this.props.click} onMouseOver={this.onMouseover} onMouseLeave={this.onMouseout}><StyledLink to='/shop'>{shopText}</StyledLink></NavLink>
+         <NavLink className='third' onClick={this.props.click} onMouseOver={this.onMouseover} onMouseLeave={this.onMouseout}><StyledLink to='/cart'>{cartText}</StyledLink></NavLink>
+       </NavList></>;
+
 
      return (
-       <Transition in={this.props.animate} timeout={500}>
-         {(state) => (
-           <Navigation state={state}>
-             <NavBtnWrapper>
-               <DrawerButton click={this.props.hamburgerClick} />
-             </NavBtnWrapper>
-             <NavList>
-               <NavLink className='first' onClick={this.props.click} onMouseOver={this.onMouseover}
-                 onMouseLeave={this.onMouseout}><StyledLink to='/'>{homeText}</StyledLink></NavLink>
-               <NavLink className='second' onClick={this.props.click} onMouseOver={this.onMouseover} onMouseLeave={this.onMouseout}><StyledLink to='/shop'>{shopText}</StyledLink></NavLink>
-               <NavLink className='third' onClick={this.props.click} onMouseOver={this.onMouseover} onMouseLeave={this.onMouseout}><StyledLink to='/cart'>{cartText}</StyledLink></NavLink>
-             </NavList>
-           </Navigation>
-         )}
-       </Transition>
-     )
+       <Transition in={this.props.animate} timeout={300}>
+         {(state) => (<>
+           {isMobile ? <Navigation state={state}>
+             {navBody}
+           </Navigation> :
+           <Navigation state={state} onMouseLeave={this.props.click}>
+             {navBody}
+           </Navigation>}
+         </>)}
+         </Transition>
+        )
    }
  }
 
-// const SideDrawer = props => (
-//
-//
-//   <Transition in={props.animate} timeout={500}>
-//     {(state) => (
-//       <Navigation state={state}>
-//         <NavBtnWrapper>
-//           <DrawerButton click={props.hamburgerClick} />
-//         </NavBtnWrapper>
-//         <NavList>
-//           <NavLink onClick={props.click}><StyledLink to='/'>Home</StyledLink></NavLink>
-//           <NavLink onClick={props.click}><StyledLink to='/shop'>Shop</StyledLink></NavLink>
-//           <NavLink onClick={props.click}><StyledLink to='/cart'>Cart</StyledLink></NavLink>
-//         </NavList>
-//       </Navigation>
-//     )}
-//   </Transition>
-//
-// )
 
 export default SideDrawer;
 
@@ -88,7 +89,7 @@ const Navigation = styled.nav`
   max-width: 260px;
   box-shadow: 1px 0px 6px rgba(0, 0, 0, .5);
   z-index: 200;
-  transition: 0.5s;
+  transition: 0.25s;
   transform: translateX(
   ${({ state }) => (state === "entering" || state === "entered" ? 0 : -101)}%
   );

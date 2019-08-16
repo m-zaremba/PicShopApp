@@ -3,16 +3,37 @@ import styled from 'styled-components';
 
 import { MdDehaze } from "react-icons/md";
 
-const DrawerButton = props => (
-
-  <Wrapper onClick={props.click}>
-    <NavLogoLeft>Pic</NavLogoLeft>
-    <NavLogoRight>Shop</NavLogoRight>
-    <Button><MdDehaze /></Button>
-  </Wrapper>
 
 
-)
+class DrawerButton extends React.Component {
+   constructor(props) {
+   super(props);
+
+   }
+   render(){
+
+     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+
+       return (
+
+       <>
+         {isMobile ? <Wrapper onClick={this.props.click}>
+           <NavLogoLeft>Pic</NavLogoLeft>
+           <NavLogoRight>Shop</NavLogoRight>
+           <Button><MdDehaze /></Button>
+         </Wrapper> : <Wrapper onMouseEnter={this.props.click}>
+           <NavLogoLeft>Pic</NavLogoLeft>
+           <NavLogoRight>Shop</NavLogoRight>
+           <Button><MdDehaze /></Button>
+         </Wrapper>}
+       </>
+
+
+
+     )
+   }
+ }
 
 export default DrawerButton;
 
