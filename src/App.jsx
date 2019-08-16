@@ -5,12 +5,12 @@ import styled from 'styled-components';
 import './app.css'
 
 
-import Navbar from './components/Navbar';
+//import Navbar from './components/Navbar';
 import Home from './components/Home';
 import Shop from './components/Shop';
 import Cart from './components/Cart';
-import SideDrawer from './components/SideDrawer';
-import Backshadow from './components/Backshadow';
+import SideDrawer from './components/navigation/SideDrawer';
+import Backshadow from './components/navigation/Backshadow';
 
 
 class App extends React.Component {
@@ -47,7 +47,7 @@ class App extends React.Component {
          <BrowserRouter>
            <MainContainer>
              {/* <Navbar  /> */}
-             <SideDrawer animate={this.state.drawerAnimate} slideIn={this.state.sideDrawerVisible} hamburgerClick={this.handleSideDrawerToggleCLick} click={this.handleBackshadowClick}/>
+             <SideDrawer animate={this.state.drawerAnimate} hamburgerClick={this.handleSideDrawerToggleCLick} click={this.handleBackshadowClick}/>
              {backShadow}
              <Switch>
                <Route exact path='/' component={Home}/>
@@ -63,8 +63,5 @@ class App extends React.Component {
 export default App;
 
 const MainContainer = styled.div`
-  ${'' /* width: 100%;
-  height: 100%; */}
   background-color: red;
-  ${'' /* margin: -8px -8px; */}
 `
