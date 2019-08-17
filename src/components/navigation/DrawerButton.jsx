@@ -5,35 +5,21 @@ import { MdDehaze } from "react-icons/md";
 
 
 
-class DrawerButton extends React.Component {
-   constructor(props) {
-   super(props);
+const DrawerButton = (props) => {
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-   }
-   render(){
-
-     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
-
-       return (
-
+  return (
        <>
-         {isMobile ? <Wrapper onClick={this.props.click}>
-           <NavLogoLeft>Pic</NavLogoLeft>
-           <NavLogoRight>Shop</NavLogoRight>
+         {isMobile ? <Wrapper onClick={props.click}>
            <Button><MdDehaze /></Button>
-         </Wrapper> : <Wrapper onMouseEnter={this.props.click}>
+         </Wrapper> : <Wrapper onMouseEnter={props.click}>
            <NavLogoLeft>Pic</NavLogoLeft>
-           <NavLogoRight>Shop</NavLogoRight>
+           <NavLogoRight>SHOP</NavLogoRight>
            <Button><MdDehaze /></Button>
          </Wrapper>}
        </>
-
-
-
-     )
-   }
- }
+  )
+}
 
 export default DrawerButton;
 
@@ -72,7 +58,7 @@ const NavLogoRight = styled.div`
 width: 70px;
   font-size: 1.5em;
   background-color: black;
-  color: rgb(255, 223, 6);
+  color: white;
   padding-top: 10px;
   padding-bottom: 10px;
   padding-right: 20px;
