@@ -51,9 +51,9 @@ class SideDrawer extends React.Component {
     }
 
     const navBody = <>
-      <NavBtnWrapper>
+      {isMobile ? null : <NavBtnWrapper>
         <DrawerButton click = {this.props.hamburgerClick} />
-      </NavBtnWrapper>
+      </NavBtnWrapper>}
       <NavList>
         <NavLink className='first' onClick={this.props.click} onMouseOver={this.onMouseover} onMouseLeave={this.onMouseout}>
           <StyledLink to='/'>
@@ -73,14 +73,40 @@ class SideDrawer extends React.Component {
       </NavList>
     </>;
 
+    // const navBodyMobile = <>
+    //   {/* <NavBtnWrapper>
+    //     <DrawerButton click = {this.props.hamburgerClick} />
+    //   </NavBtnWrapper> */}
+    //   <NavList>
+    //     <NavLink className='first' onClick={this.props.click} onMouseOver={this.onMouseover} onMouseLeave={this.onMouseout}>
+    //       <StyledLink to='/'>
+    //         <TiHomeOutline style={{flex: '1', fontSize: '20px'}}/><LinkText>{homeText}</LinkText>
+    //       </StyledLink>
+    //     </NavLink>
+    //     <NavLink className='second' onClick={this.props.click} onMouseOver={this.onMouseover} onMouseLeave={this.onMouseout}>
+    //       <StyledLink to='/shop'>
+    //         <TiGift style={{flex: '1', fontSize: '20px'}}/><LinkText>{shopText}</LinkText>
+    //       </StyledLink>
+    //     </NavLink>
+    //     <NavLink className='third' onClick={this.props.click} onMouseOver={this.onMouseover} onMouseLeave={this.onMouseout}>
+    //       <StyledLink to='/cart'>
+    //         <TiShoppingCart style={{flex: '1', fontSize: '20px'}}/><LinkText>{cartText}</LinkText>
+    //       </StyledLink>
+    //     </NavLink>
+    //   </NavList>
+    // </>;
+
     return (
       <Transition in={this.props.animate} timeout={300}>
         {(state) => (
           <> {isMobile ?
-            <Navigation state={state}>
-              {navBody}
-            </Navigation>
-          :
+            <><NavBtnWrapper>
+              <DrawerButton click = {this.props.hamburgerClick} />
+            </NavBtnWrapper>
+              <Navigation state={state}>
+                {navBody}
+              </Navigation></>
+              :
           <Navigation state={state} onMouseLeave={this.props.click}>
             {navBody}
           </Navigation>
@@ -104,54 +130,50 @@ const Navigation = styled.nav `
   z-index: 200;
   transition: 0.25s;
   transform: translateX(${({state}) => (state === "entering" || state === "entered" ? 0 : -101)}%);
-
     @media (max-width: 768px) {
       padding-top: unset;
-      height: 70vh;
+      height: 100%;
       width: 100%;
       max-width: 100%;
       transform: translateY(${ ({state}) => (state === "entering" || state === "entered" ? 0 : -100)}%);
     }
 ${'' /* } */}
 `
-
 const NavBtnWrapper = styled.div `
   position: absolute;
   top: 30px;
   right: -182px;
     @media (max-width: 768px) {
-      top: 100%;
+      position: fixed;
+      top: 0;
       right: 0;
+      z-index: 300;
     }
 `
-
 const NavList = styled.ul `
   display: flex;
   flex-direction: column;
 `
-
 const NavLink = styled.li `
   & {
     text-align: left;
     list-style: none;
-    padding-top: 2em;
-    padding-bottom: 2em;
     padding-left: 1.5em;
     padding-right: 1.5em;
     border-bottom: rgba(0, 0, 0, 0.1) solid 1px;
     width: 100%;
+    height: 75px;
   }
-
   &:hover {
     background-color: white;
   }
 `
-
 const StyledLink = styled(Link)`
   text-decoration: none;
   display: flex;
   align-items: center;
   font-size: 1.1em;
+  height: 100%;
 
   &:focus, &:hover, &:visited, &:link, &:active {
     text-decoration: none;

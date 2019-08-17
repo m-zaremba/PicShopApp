@@ -45,7 +45,7 @@ const Button = styled.button`
 const NavLogoLeft = styled.div`
   width: 70px;
   font-size: 1.5em;
-  background-color: rgba(255, 223, 6, 0.96);
+  background-color: white;
   color: black;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -58,7 +58,7 @@ const NavLogoRight = styled.div`
 width: 70px;
   font-size: 1.5em;
   background-color: black;
-  color: white;
+  color: rgba(255, 223, 6, 0.96);
   padding-top: 10px;
   padding-bottom: 10px;
   padding-right: 20px;
