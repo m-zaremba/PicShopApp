@@ -73,29 +73,6 @@ class SideDrawer extends React.Component {
       </NavList>
     </>;
 
-    // const navBodyMobile = <>
-    //   {/* <NavBtnWrapper>
-    //     <DrawerButton click = {this.props.hamburgerClick} />
-    //   </NavBtnWrapper> */}
-    //   <NavList>
-    //     <NavLink className='first' onClick={this.props.click} onMouseOver={this.onMouseover} onMouseLeave={this.onMouseout}>
-    //       <StyledLink to='/'>
-    //         <TiHomeOutline style={{flex: '1', fontSize: '20px'}}/><LinkText>{homeText}</LinkText>
-    //       </StyledLink>
-    //     </NavLink>
-    //     <NavLink className='second' onClick={this.props.click} onMouseOver={this.onMouseover} onMouseLeave={this.onMouseout}>
-    //       <StyledLink to='/shop'>
-    //         <TiGift style={{flex: '1', fontSize: '20px'}}/><LinkText>{shopText}</LinkText>
-    //       </StyledLink>
-    //     </NavLink>
-    //     <NavLink className='third' onClick={this.props.click} onMouseOver={this.onMouseover} onMouseLeave={this.onMouseout}>
-    //       <StyledLink to='/cart'>
-    //         <TiShoppingCart style={{flex: '1', fontSize: '20px'}}/><LinkText>{cartText}</LinkText>
-    //       </StyledLink>
-    //     </NavLink>
-    //   </NavList>
-    // </>;
-
     return (
       <Transition in={this.props.animate} timeout={300}>
         {(state) => (
@@ -147,7 +124,7 @@ const NavBtnWrapper = styled.div `
       position: fixed;
       top: 0;
       right: 0;
-      z-index: 300;
+      z-index: 400;
     }
 `
 const NavList = styled.ul `

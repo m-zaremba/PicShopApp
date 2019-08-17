@@ -39,7 +39,6 @@ const Button = styled.button`
   cursor: pointer;
   color: gray;
   display: flex;
-  z-index: 99;
 `
 
 const NavLogoLeft = styled.div`
@@ -52,6 +51,7 @@ const NavLogoLeft = styled.div`
   padding-left: 20px;
   text-align: right;
   letter-spacing: 5px;
+  box-shadow: inset 10px 0 9px -10px rgba(0,0,0,0.7)
 `
 
 const NavLogoRight = styled.div`
