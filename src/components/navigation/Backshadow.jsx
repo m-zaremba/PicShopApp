@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Backshadow = props => (
-  <Div onClick={props.click}></Div>
+  //<Div onClick={props.click}></Div>
+  <Div></Div>
 );
 
 export default Backshadow;

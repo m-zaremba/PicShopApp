@@ -5,7 +5,8 @@ import styled from 'styled-components';
 import DrawerButton from './DrawerButton';
 import {Transition} from "react-transition-group";
 
-import {TiGift, TiHomeOutline, TiShoppingCart} from "react-icons/ti";
+import {TiHomeOutline, TiShoppingCart} from "react-icons/ti";
+import {FaCameraRetro} from "react-icons/fa";
 
 class SideDrawer extends React.Component {
   constructor(props) {
@@ -62,7 +63,7 @@ class SideDrawer extends React.Component {
         </NavLink>
         <NavLink className='second' onClick={this.props.click} onMouseOver={this.onMouseover} onMouseLeave={this.onMouseout}>
           <StyledLink to='/shop'>
-            <TiGift style={{flex: '1', fontSize: '20px'}}/><LinkText>{shopText}</LinkText>
+            <FaCameraRetro style={{flex: '1', fontSize: '20px'}}/><LinkText>{shopText}</LinkText>
           </StyledLink>
         </NavLink>
         <NavLink className='third' onClick={this.props.click} onMouseOver={this.onMouseover} onMouseLeave={this.onMouseout}>
@@ -95,6 +96,7 @@ class SideDrawer extends React.Component {
 export default SideDrawer;
 
 const Navigation = styled.nav `
+  font-family: 'Montserrat', sans-serif;
   position: fixed;
   top: 0;
   left: 0;

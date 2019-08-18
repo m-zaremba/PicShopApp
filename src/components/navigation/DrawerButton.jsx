@@ -55,8 +55,10 @@ const NavLogoLeft = styled.div`
 `
 
 const NavLogoRight = styled.div`
-width: 70px;
+  width: 70px;
   font-size: 1.5em;
+  font-weight: 700;
+  letter-spacing: -2px;
   background-color: black;
   color: rgba(255, 223, 6, 0.96);
   padding-top: 10px;

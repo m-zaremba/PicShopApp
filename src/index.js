@@ -5,6 +5,13 @@ import * as serviceWorker from './serviceWorker';
 import cartReducer from './components/reducers/cartReducer';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
+import WebFont from 'webfontloader';
+
+WebFont.load({
+  google: {
+    families: ['Open Sans Condensed:300,300i,700', 'Montserrat:200,400,500,700,900,900i', 'sans-serif']
+  }
+});
 
 const store = createStore(cartReducer);
 
