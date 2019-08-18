@@ -27,12 +27,12 @@ class Cart extends React.Component{
                     return(
 
                         <li key={item.id}>
-                          <div>
+                          <div style={{objectFit: 'fill'}}>
                             <img src={item.img} alt={item.img}/>
                           </div>
                           <div>
-                            <span>{item.title}</span>
-                            <p>{item.desc}</p>
+                            <span>{item.author}</span>
+                            <p>{item.tag}</p>
                             <p><b>Price: {item.price}$</b></p>
                             <p>
                               <b>Quantity: {item.quantity}</b>
