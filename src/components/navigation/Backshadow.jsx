@@ -12,7 +12,7 @@ const Div = styled.div`
   position: fixed;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, .15);
+  background-color: rgba(0, 0, 0, .45);
   z-index: 100;
 
 `

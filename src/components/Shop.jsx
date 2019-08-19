@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { addToCart } from './actions/cartActions.js';
 import styled from 'styled-components';
-import Pagination from "react-js-pagination";
 
 import { FaPlusCircle } from "react-icons/fa";
 

@@ -60,7 +60,7 @@ class App extends React.Component {
 export default App;
 
 const MainContainer = styled.div`
-  background-color: rgba(255, 223, 6, 0.96);
+  ${'' /* background-color: rgba(255, 223, 6, 0.96); */}
   ${'' /* max-width: 1020px; */}
   width: 100%;
   text-align: center;
