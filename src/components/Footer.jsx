@@ -9,7 +9,7 @@ const Footer = (props) => {
      return (
        <FooterMainContainer>
          <FooterWrapper>
-           <FooterMotto>Not by luck. By choice.</FooterMotto>
+           <FooterMotto>Not by chance. By choice.</FooterMotto>
            <SocialIcons>
              <StyledAnchor href="https://www.facebook.com"><FaFacebookSquare/></StyledAnchor>
              <StyledAnchor href="https://www.twitter.com"><FaTwitterSquare/></StyledAnchor>
@@ -37,7 +37,7 @@ const FooterMainContainer = styled.footer`
   height: auto;
   text-align: center;
   padding: 15px 10px;
-  color: rgb(255, 223, 6);
+  color: rgb(255, 222, 0);
 `
 
 const FooterWrapper = styled.div`
@@ -87,7 +87,7 @@ const StyledLink = styled(Link)`
 
   &:focus, &:hover, &:visited, &:link, &:active {
     text-decoration: none;
-    color: rgb(255, 223, 6);
+    color: rgb(255, 222, 0);
   };
 `
 
@@ -95,6 +95,6 @@ const StyledAnchor = styled.a`
   text-decoration: none;
   &:focus, &:hover, &:visited, &:link, &:active {
     text-decoration: none;
-    color: rgb(255, 223, 6);
+    color: rgb(255, 222, 0);
   };
 `

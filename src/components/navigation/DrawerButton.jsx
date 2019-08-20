@@ -5,20 +5,26 @@ import { MdDehaze } from "react-icons/md";
 
 
 
-const DrawerButton = (props) => {
-  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-  return (
+
+class DrawerButton extends React.Component {
+
+  render() {
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    // let route = window.location.pathname;
+
+    return (
        <>
-         {isMobile ? <Wrapper onClick={props.click}>
+         {(isMobile) ? <Wrapper onClick={this.props.click}>
            <Button><MdDehaze /></Button>
-         </Wrapper> : <Wrapper onMouseEnter={props.click}>
-           <NavLogoLeft>Pic</NavLogoLeft>
+         </Wrapper> : <Wrapper onMouseEnter={this.props.click}>
+           { window.location.pathname === '/' ? <NavLogoLeftWhite>Pic</NavLogoLeftWhite> : <NavLogoLeftYellow>Pic</NavLogoLeftYellow>}
            <NavLogoRight>SHOP</NavLogoRight>
            <Button><MdDehaze /></Button>
          </Wrapper>}
        </>
-  )
+    )
+  }
 }
 
 export default DrawerButton;
@@ -41,10 +47,23 @@ const Button = styled.button`
   display: flex;
 `
 
-const NavLogoLeft = styled.div`
+const NavLogoLeftWhite = styled.div`
   width: 70px;
   font-size: 1.5em;
   background-color: white;
+  color: black;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  text-align: right;
+  letter-spacing: 5px;
+  box-shadow: inset 10px 0 9px -10px rgba(0,0,0,0.7)
+`
+
+const NavLogoLeftYellow = styled.div`
+  width: 70px;
+  font-size: 1.5em;
+  background-color: rgb(255, 222, 0);
   color: black;
   padding-top: 10px;
   padding-bottom: 10px;
