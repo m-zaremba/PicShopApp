@@ -36,6 +36,7 @@ class SideDrawer extends React.Component {
   render() {
 
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    const location = window.location.pathname;
 
     let homeText;
     let shopText;
@@ -51,10 +52,20 @@ class SideDrawer extends React.Component {
       cartText = this.state.cartText;
     }
 
-    const navBody = <>
-      {isMobile ? null : <NavBtnWrapper>
+    let button = null;
+
+    if (!isMobile && location === '/') {
+      button = <><NavBtnWrapper>
         <DrawerButton click = {this.props.hamburgerClick} />
-      </NavBtnWrapper>}
+      </NavBtnWrapper></>
+    } else {
+      button = <><NavBtnWrapperVariant>
+        <DrawerButton click = {this.props.hamburgerClick} />
+      </NavBtnWrapperVariant></>
+    }
+
+    const navBody = <>
+      {button}
       <NavList>
         <NavLink className='first' onClick={this.props.click} onMouseOver={this.onMouseover} onMouseLeave={this.onMouseout}>
           <StyledLink to='/'>
@@ -118,7 +129,7 @@ const Navigation = styled.nav `
     }
 ${'' /* } */}
 `
-const NavBtnWrapper = styled.div `
+let NavBtnWrapper = styled.div `
   position: absolute;
   top: 30px;
   right: -182px;
@@ -129,6 +140,19 @@ const NavBtnWrapper = styled.div `
       z-index: 400;
     }
 `
+
+const NavBtnWrapperVariant = styled.div`
+  position: absolute;
+  top: 30px;
+  right: -80px;
+    @media (max-width: 768px) {
+      position: fixed;
+      top: 0;
+      right: 0;
+      z-index: 400;
+    }
+`
+
 const NavList = styled.ul `
   display: flex;
   flex-direction: column;

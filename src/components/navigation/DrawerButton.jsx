@@ -11,16 +11,21 @@ class DrawerButton extends React.Component {
 
   render() {
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    // let route = window.location.pathname;
+
+    let desktopButton;
+
+    if (window.location.pathname === '/') {
+      desktopButton = <><NavLogoLeft>Pic</NavLogoLeft><NavLogoRight>SHOP</NavLogoRight><Button><MdDehaze /></Button></>
+    } else {
+      desktopButton = <><NavLogoLeftVariant></NavLogoLeftVariant><NavLogoRightVariant><MdDehaze /></NavLogoRightVariant></>
+    }
 
     return (
        <>
          {(isMobile) ? <Wrapper onClick={this.props.click}>
-           <Button><MdDehaze /></Button>
+           <ButtonVariant><MdDehaze /></ButtonVariant>
          </Wrapper> : <Wrapper onMouseEnter={this.props.click}>
-           { window.location.pathname === '/' ? <NavLogoLeftWhite>Pic</NavLogoLeftWhite> : <NavLogoLeftYellow>Pic</NavLogoLeftYellow>}
-           <NavLogoRight>SHOP</NavLogoRight>
-           <Button><MdDehaze /></Button>
+           {desktopButton}
          </Wrapper>}
        </>
     )
@@ -47,20 +52,19 @@ const Button = styled.button`
   display: flex;
 `
 
-const NavLogoLeftWhite = styled.div`
-  width: 70px;
-  font-size: 1.5em;
-  background-color: white;
-  color: black;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 20px;
-  text-align: right;
-  letter-spacing: 5px;
-  box-shadow: inset 10px 0 9px -10px rgba(0,0,0,0.7)
+const ButtonVariant = styled.button`
+  background: black;
+  border: none;
+  outline: none;
+  height: 42px;
+  width: 42px;
+  font-size: 30px;
+  cursor: pointer;
+  color: rgb(255, 222, 0);
+  display: flex;
 `
 
-const NavLogoLeftYellow = styled.div`
+const NavLogoLeft = styled.div`
   width: 70px;
   font-size: 1.5em;
   background-color: rgb(255, 222, 0);
@@ -70,6 +74,13 @@ const NavLogoLeftYellow = styled.div`
   padding-left: 20px;
   text-align: right;
   letter-spacing: 5px;
+  box-shadow: inset 10px 0 9px -10px rgba(0,0,0,0.7)
+`
+
+const NavLogoLeftVariant = styled.div`
+  width: 40px;
+  height: 40px;
+  background-color: rgb(255, 222, 0);
   box-shadow: inset 10px 0 9px -10px rgba(0,0,0,0.7)
 `
 
@@ -83,4 +94,15 @@ const NavLogoRight = styled.div`
   padding-top: 10px;
   padding-bottom: 10px;
   padding-right: 20px;
+`
+
+const NavLogoRightVariant = styled.div`
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  font-size: 1.5em;
+  background-color: black;
+  color: rgba(255, 223, 6, 0.96);
 `
