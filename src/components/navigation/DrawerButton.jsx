@@ -5,13 +5,10 @@ import { MdDehaze } from "react-icons/md";
 
 
 
-
-
 class DrawerButton extends React.Component {
 
   render() {
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
     let desktopButton;
 
     if (window.location.pathname === '/') {
@@ -50,6 +47,12 @@ const Button = styled.button`
   cursor: pointer;
   color: gray;
   display: flex;
+
+  @media (max-width: 414px) {
+    background: black;
+    color: rgb(255, 222, 0);
+    font-size: 1.5em;
+  }
 `
 
 const ButtonVariant = styled.button`
@@ -74,14 +77,22 @@ const NavLogoLeft = styled.div`
   padding-left: 20px;
   text-align: right;
   letter-spacing: 5px;
-  box-shadow: inset 10px 0 9px -10px rgba(0,0,0,0.7)
+  box-shadow: inset 10px 0 9px -10px rgba(0,0,0,0.7);
+
+  @media (max-width: 414px) {
+    display: none;
+  }
 `
 
 const NavLogoLeftVariant = styled.div`
   width: 40px;
   height: 40px;
   background-color: rgb(255, 222, 0);
-  box-shadow: inset 10px 0 9px -10px rgba(0,0,0,0.7)
+  box-shadow: inset 10px 0 9px -10px rgba(0,0,0,0.7);
+
+  @media (max-width: 414px) {
+    display: none;
+  }
 `
 
 const NavLogoRight = styled.div`
@@ -94,6 +105,10 @@ const NavLogoRight = styled.div`
   padding-top: 10px;
   padding-bottom: 10px;
   padding-right: 20px;
+
+  @media (max-width: 414px) {
+    display: none;
+  }
 `
 
 const NavLogoRightVariant = styled.div`

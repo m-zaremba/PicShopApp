@@ -52,9 +52,11 @@ class SideDrawer extends React.Component {
       cartText = this.state.cartText;
     }
 
-    let button = null;
+    let button;
 
-    if (!isMobile && location === '/') {
+    if (isMobile) {
+      button = null;
+    } else if (!isMobile && location === '/') {
       button = <><NavBtnWrapper>
         <DrawerButton click = {this.props.hamburgerClick} />
       </NavBtnWrapper></>
@@ -89,13 +91,13 @@ class SideDrawer extends React.Component {
       <Transition in={this.props.animate} timeout={300}>
         {(state) => (
           <> {isMobile ?
-            <><NavBtnWrapper>
+            <><NavBtnWrapperMobile>
               <DrawerButton click = {this.props.hamburgerClick} />
-            </NavBtnWrapper>
+            </NavBtnWrapperMobile>
               <Navigation state={state}>
                 {navBody}
               </Navigation></>
-              :
+          :
           <Navigation state={state} onMouseLeave={this.props.click}>
             {navBody}
           </Navigation>
@@ -113,41 +115,49 @@ const Navigation = styled.nav `
   left: 0;
   padding-top: 1em;
   background-color: rgba(255, 223, 6, 0.96);
-  height: 100vh;
+  height: 100%;
   width: 70%;
   max-width: 350px;
   box-shadow: 1px 0px 6px rgba(0, 0, 0, .5);
   z-index: 200;
   transition: 0.25s;
   transform: translateX(${({state}) => (state === "entering" || state === "entered" ? 0 : -101)}%);
-    @media (max-width: 768px) {
+    @media (max-width: 414px) {
       padding-top: unset;
       height: 100%;
       width: 100%;
-      max-width: 100%;
+      max-width: unset;
       transform: translateY(${ ({state}) => (state === "entering" || state === "entered" ? 0 : -100)}%);
     }
-${'' /* } */}
 `
 let NavBtnWrapper = styled.div `
   position: absolute;
   top: 30px;
   right: -182px;
-    @media (max-width: 768px) {
+    @media (max-width: 414px) {
       position: fixed;
-      top: 0;
+      top: unset;
+      bottom: -40px;
       right: 0;
       z-index: 400;
     }
+`
+
+let NavBtnWrapperMobile = styled.div `
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 400;
 `
 
 const NavBtnWrapperVariant = styled.div`
   position: absolute;
   top: 30px;
   right: -80px;
-    @media (max-width: 768px) {
+    @media (max-width: 414px) {
       position: fixed;
-      top: 0;
+      top: unset;
+      bottom: -40px;
       right: 0;
       z-index: 400;
     }
