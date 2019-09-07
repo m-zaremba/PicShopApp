@@ -3,21 +3,48 @@ import { connect } from 'react-redux';
 import { addToCart } from './actions/cartActions.js';
 import styled from 'styled-components';
 
-// import { FaPlusCircle } from "react-icons/fa";
-
+import {IoIosClose} from "react-icons/io";
 
 
 class Shop extends React.Component {
 
   state = {
     buyButtonVisible: false,
-    itemToShowId: 0
+    itemToShowId: 0,
+    photoPreview: false,
+    photoToShow: null,
+    showPopup: false,
+    buyAuthor: null,
+    buyPhotoPrev: null,
+    buyItemNumber: null,
   }
 
 
-   handleClick = (id)=>{
-         this.props.addToCart(id);
-     }
+   handleClick = (item) => {
+     // this.props.addToCart(id);
+     // this.setState({
+     //   showPopup: true,
+     // })
+   }
+
+   handleShowBuyPopup = (item) => {
+     this.setState({
+       buyAuthor: item.author,
+       buyPhotoPrev: item.img,
+       showPopup: true,
+       buyItemNumber: item.id,
+     })
+   }
+
+   handleHideBuyPopup = () => {
+     this.setState({
+       showPopup: false,
+     })
+   }
+
+   handleBuy = () => {
+     this.props.addToCart(this.state.buyItemNumber);
+   }
 
    handleBuyButtonShow = (id) => {
      this.setState({
@@ -31,6 +58,20 @@ class Shop extends React.Component {
      })
    }
 
+   handlePhotoPreview = (img) => {
+     this.setState({
+       photoToShow: img,
+       photoPreview: true,
+     })
+   }
+
+   handlePreviewHide = () => {
+     this.setState({
+       photoPreview: false,
+       photoToShow: null,
+     })
+   }
+
 
    render(){
 
@@ -38,18 +79,45 @@ class Shop extends React.Component {
             return(
                 <ShopItem key={item.id} onMouseEnter={() => {this.handleBuyButtonShow(item.id)}} onMouseLeave={() => {this.handleBuyButtonShow()}}>
                   <div>
-                    <Img src={item.img} alt={item.tag}/>
+                    <Img src={item.img} alt={item.tag} onClick={() => {this.handlePhotoPreview(item.img)}}/>
                   </div>
                   <div>
                     <p>Author: {item.author}</p>
                     {/* <p><b>Price: {item.price}$</b></p> */}
-                    {item.id === this.state.itemToShowId ? <Div><Button to="/" onClick={()=>{this.handleClick(item.id)}}>Buy</Button></Div> : <Div>Buy from 2$</Div>}
+                    {item.id === this.state.itemToShowId ? <Div><Button to="/" onClick={()=>{this.handleShowBuyPopup(item)}}>Buying Options</Button></Div> : <Div>Buy from {item.price} $</Div>}
                   </div>
                 </ShopItem>
             )
         })
+
+        let photoPreview;
+
+        if (this.state.photoPreview) {
+          photoPreview = <><PreviewMainContainer><StyledCloseIcon onClick={this.handlePreviewHide}/><PhotoWrapper><img src={this.state.photoToShow} alt='enlarged preview'/></PhotoWrapper></PreviewMainContainer></>;
+        } else {
+          photoPreview = null;
+        }
+
+        let buyPopup = null;
+
+        if(this.state.showPopup) {
+          buyPopup = <BuyPopupMainContainer>
+            <BuyPopupWrapper>
+              <StyledCloseIcon onClick={this.handleHideBuyPopup}/>
+              <div>
+                <img src={this.state.buyPhotoPrev} alt="none"/>
+                <div>
+                  <Button to="/" onClick={()=>{this.handleBuy(); this.setState({showPopup: false})}}>Buy</Button>
+                </div>
+              </div>
+            </BuyPopupWrapper>
+          </BuyPopupMainContainer>
+        }
+
         return(
             <ShopMainContainer>
+              {photoPreview}
+              {buyPopup}
               <ShopWrapper>
                 <h3>Our items</h3>
                 <ShopItemWrapper>
@@ -77,15 +145,57 @@ const mapDispatchToProps= (dispatch) => {
 export default connect (mapStateToProps, mapDispatchToProps)(Shop);
 
 const ShopMainContainer = styled.div`
-  ${'' /* max-width: 1200px; */}
   width: 100%;
-  ${'' /* min-height: calc(100vh - 30px); */}
   background-color: white;
+`
+
+const PreviewMainContainer = styled.div`
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  &:hover {
+    cursor: pointer;
+  }
+`
+
+const BuyPopupMainContainer = styled.div`
+height: 100%;
+width: 100%;
+background-color: rgba(0, 0, 0, 0.8);
+display: flex;
+justify-content: center;
+align-items: center;
+position: fixed;
+top: 0;
+left: 0;
+`
+
+const BuyPopupWrapper = styled.div`
+  background-color: white;
+  width: 50%;
+  padding: 2em 2em;
+  position: relative;
+`
+
+const PhotoWrapper = styled.div`
+  height: 70%;
+  width: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
 `
 
 const ShopWrapper = styled.div`
   max-width: 1200px;
-width: 100%;
+  width: 100%;
   min-height: calc(100vh - 30px);
 `
 
@@ -97,29 +207,43 @@ const ShopItemWrapper = styled.div`
 const ShopItem = styled.div`
   font-family: 'Montserrat', sans-serif;
   display: inline-block;
-  margin: 20px 10px;
-  padding: 20px 20px;
-  flex: 1 1 calc(33% - 20px);
-  max-width: calc(33% - 20px);
+
+  @media (min-width: 769px) {
+    margin: 20px 10px;
+    padding: 30px 20px;
+    flex: 1 1 calc(33% - 20px);
+    max-width: calc(33% - 20px);
+  }
 
   &:hover{
     background-color: rgb(248, 248, 245);
   }
+
+  @media (min-width: 415px) and (max-width: 768px) {
+    flex: 1 1 calc(50% - 20px);
+    margin: 30px 0;
+    padding: 30px 20px;
+  }
+
+  @media (max-width: 414px) {
+    width: 100%;
+    margin: 30px 0;
+    padding: 0 0;
+    flex: unset;
+  }
 `
 
 const Img = styled.img`
-  width: 75%;
-`
+  width: 90%;
 
-// const IconBuy = styled(FaPlusCircle)`
-//   font-size: 1.9em;
-//   color: rgb(255, 42, 42);
-//
-//   &:hover{
-//     color: green;
-//     transition: color .3s;
-//   }
-// `
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+`
 
 const Button = styled.button`
   border: none;
@@ -131,6 +255,7 @@ const Button = styled.button`
     transition: .3s;
     color: white;
     background-color: black;
+    cursor: pointer;
   }
 `
 
@@ -138,4 +263,12 @@ const Div = styled.div`
   padding: 10px 0;
   height: 1.5em;
   font-size: .8em;
+`
+
+const StyledCloseIcon = styled(IoIosClose)`
+  color: rgb(255, 222, 0);
+  position: fixed;
+  right: 25px;
+  top: 25px;
+  font-size: 3em;
 `
