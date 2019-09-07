@@ -94,9 +94,9 @@ class SideDrawer extends React.Component {
             <><NavBtnWrapperMobile>
               <DrawerButton click = {this.props.hamburgerClick} />
             </NavBtnWrapperMobile>
-              <Navigation state={state}>
+              <NavigationMobile state={state}>
                 {navBody}
-              </Navigation></>
+              </NavigationMobile></>
           :
           <Navigation state={state} onMouseLeave={this.props.click}>
             {navBody}
@@ -130,6 +130,31 @@ const Navigation = styled.nav `
       transform: translateY(${ ({state}) => (state === "entering" || state === "entered" ? 0 : -100)}%);
     }
 `
+
+const NavigationMobile = styled.nav `
+  font-family: 'Montserrat', sans-serif;
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding-top: 1em;
+  background-color: rgba(255, 223, 6, 0.96);
+  height: 100%;
+  width: 100%;
+  box-shadow: 1px 0px 6px rgba(0, 0, 0, .5);
+  z-index: 200;
+  transition: 0.25s;
+  transform: translateY(${({state}) => (state === "entering" || state === "entered" ? 0 : -101)}%);
+
+    @media (min-width: 415px) {
+      padding-top: unset;
+      height: 100%;
+      width: 70%;
+      max-width: 350px;
+      right: -350px;
+      transform: translateX(${ ({state}) => (state === "entering" || state === "entered" ? -100 : 0)}%);
+    }
+`
+
 let NavBtnWrapper = styled.div `
   position: absolute;
   top: 30px;
