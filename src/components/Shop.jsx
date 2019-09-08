@@ -17,15 +17,10 @@ class Shop extends React.Component {
     buyAuthor: null,
     buyPhotoPrev: null,
     buyItemNumber: null,
+    filter: 'Search photos',
+    filterActive: false
   }
 
-
-   handleClick = (item) => {
-     // this.props.addToCart(id);
-     // this.setState({
-     //   showPopup: true,
-     // })
-   }
 
    handleShowBuyPopup = (item) => {
      this.setState({
@@ -72,22 +67,51 @@ class Shop extends React.Component {
      })
    }
 
+   handleFilterChange = (e) => {
+
+     this.setState({
+       filter: e.target.value,
+     })
+
+   }
+
 
    render(){
 
        let itemList = this.props.items.map(item=>{
-            return(
-                <ShopItem key={item.id} onMouseEnter={() => {this.handleBuyButtonShow(item.id)}} onMouseLeave={() => {this.handleBuyButtonShow()}}>
-                  <div>
-                    <Img src={item.img} alt={item.tag} onClick={() => {this.handlePhotoPreview(item.img)}}/>
-                  </div>
-                  <div>
-                    <p>Author: {item.author}</p>
-                    {/* <p><b>Price: {item.price}$</b></p> */}
-                    {item.id === this.state.itemToShowId ? <Div><Button to="/" onClick={()=>{this.handleShowBuyPopup(item)}}>Buying Options</Button></Div> : <Div>Buy from {item.price} $</Div>}
-                  </div>
-                </ShopItem>
-            )
+
+         let filterTag = this.state.filter;
+         let imageTags = item.tag.split(',');
+
+         //console.log(imageTags);
+
+         if (imageTags.indexOf(filterTag) > -1) {
+           return(
+               <ShopItem key={item.id} onMouseEnter={() => {this.handleBuyButtonShow(item.id)}} onMouseLeave={() => {this.handleBuyButtonShow()}}>
+                 <div>
+                   <Img src={item.img} alt={item.tag} onClick={() => {this.handlePhotoPreview(item.img)}}/>
+                 </div>
+                 <div>
+                   <p>Author: {item.author}</p>
+                   {item.id === this.state.itemToShowId ? <Div><Button to="/" onClick={()=>{this.handleShowBuyPopup(item)}}>Buying Options</Button></Div> : <Div>Buy from {item.price} $</Div>}
+                 </div>
+               </ShopItem>
+           )
+         } else if (this.state.filter === 'Search photos' || this.state.filter === '') {
+           return(
+               <ShopItem key={item.id} onMouseEnter={() => {this.handleBuyButtonShow(item.id)}} onMouseLeave={() => {this.handleBuyButtonShow()}}>
+                 <div>
+                   <Img src={item.img} alt={item.tag} onClick={() => {this.handlePhotoPreview(item.img)}}/>
+                 </div>
+                 <div>
+                   <p>Author: {item.author}</p>
+                   {item.id === this.state.itemToShowId ? <Div><Button to="/" onClick={()=>{this.handleShowBuyPopup(item)}}>Buying Options</Button></Div> : <Div>Buy from {item.price} $</Div>}
+                 </div>
+               </ShopItem>
+           )
+         }
+
+
         })
 
         let photoPreview;
@@ -119,7 +143,7 @@ class Shop extends React.Component {
               {photoPreview}
               {buyPopup}
               <ShopWrapper>
-                <h3>Our items</h3>
+                <input type='text' name='title' value={this.state.filter} onChange={this.handleFilterChange}/>
                 <ShopItemWrapper>
                   {itemList}
                 </ShopItemWrapper>
