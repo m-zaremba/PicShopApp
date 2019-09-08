@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { addToCart } from './actions/cartActions.js';
 import styled from 'styled-components';
 
-import {IoIosClose} from "react-icons/io";
+import {IoIosClose, IoIosSearch} from "react-icons/io";
 
 
 class Shop extends React.Component {
@@ -17,8 +17,8 @@ class Shop extends React.Component {
     buyAuthor: null,
     buyPhotoPrev: null,
     buyItemNumber: null,
-    filter: 'Search photos',
-    filterActive: false
+    filterVal: '',
+    filterTag: ''
   }
 
 
@@ -70,9 +70,30 @@ class Shop extends React.Component {
    handleFilterChange = (e) => {
 
      this.setState({
-       filter: e.target.value,
+       filterVal: e.target.value,
      })
 
+     if (this.state.filterVal === '') {
+       this.setState({
+         filterTag: '',
+       })
+     }
+
+   }
+
+   handleFilterButtonClick = () => {
+     this.setState({
+       filterTag: this.state.filterVal
+     })
+   }
+
+
+   handleFilterEnterPress = (e) => {
+     if(e.key === 'Enter') {
+       this.setState({
+         filterTag: this.state.filterVal
+       })
+     }
    }
 
 
@@ -80,7 +101,7 @@ class Shop extends React.Component {
 
        let itemList = this.props.items.map(item=>{
 
-         let filterTag = this.state.filter;
+         let filterTag = this.state.filterTag;
          let imageTags = item.tag.split(',');
 
          //console.log(imageTags);
@@ -97,7 +118,7 @@ class Shop extends React.Component {
                  </div>
                </ShopItem>
            )
-         } else if (this.state.filter === 'Search photos' || this.state.filter === '') {
+         } else if (this.state.filterTag === '' || this.state.filterVal === '') {
            return(
                <ShopItem key={item.id} onMouseEnter={() => {this.handleBuyButtonShow(item.id)}} onMouseLeave={() => {this.handleBuyButtonShow()}}>
                  <div>
@@ -143,7 +164,10 @@ class Shop extends React.Component {
               {photoPreview}
               {buyPopup}
               <ShopWrapper>
-                <input type='text' name='title' value={this.state.filter} onChange={this.handleFilterChange}/>
+                <FilterWrapper>
+                  <StyledSearchIcon onClick={this.handleFilterButtonClick}>Find</StyledSearchIcon>
+                  <Input type='text' name='filer' placeholder='Search photos' value={this.state.filterVal} onChange={this.handleFilterChange} onKeyPress={this.handleFilterEnterPress}/>
+                </FilterWrapper>
                 <ShopItemWrapper>
                   {itemList}
                 </ShopItemWrapper>
@@ -190,15 +214,15 @@ const PreviewMainContainer = styled.div`
 `
 
 const BuyPopupMainContainer = styled.div`
-height: 100%;
-width: 100%;
-background-color: rgba(0, 0, 0, 0.8);
-display: flex;
-justify-content: center;
-align-items: center;
-position: fixed;
-top: 0;
-left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
 `
 
 const BuyPopupWrapper = styled.div`
@@ -226,7 +250,7 @@ const ShopWrapper = styled.div`
 const ShopItemWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
 `
 const ShopItem = styled.div`
   font-family: 'Montserrat', sans-serif;
@@ -295,4 +319,28 @@ const StyledCloseIcon = styled(IoIosClose)`
   right: 25px;
   top: 25px;
   font-size: 3em;
+`
+
+const FilterWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  padding: .2em 1em;
+  border: solid lightgray 1px;
+  margin: 1em 2em;
+`
+
+const Input = styled.input`
+  border: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.5em;
+  font-weight: 100;
+  padding: 1em 1em;
+  width: 100%;
+  margin: 0 0;
+  outline: none;
+`
+
+const StyledSearchIcon = styled(IoIosSearch)`
+  font-size: 3em;
+  margin: 0 0;
 `
