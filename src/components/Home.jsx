@@ -4,7 +4,7 @@ class Home extends React.Component {
 
    render(){
      return (
-       <div>HOME</div>
+       <div style={{width: '100%', backgroundColor: 'red'}}>HOME</div>
      )
    }
  }

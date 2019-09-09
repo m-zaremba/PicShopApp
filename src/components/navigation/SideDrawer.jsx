@@ -3,10 +3,10 @@ import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 
 import DrawerButton from './DrawerButton';
-import {Transition} from "react-transition-group";
+import {Transition} from 'react-transition-group';
 
-import {TiHomeOutline, TiShoppingCart} from "react-icons/ti";
-import {FaCameraRetro} from "react-icons/fa";
+import {TiHomeOutline, TiShoppingCart} from 'react-icons/ti';
+import {FaCameraRetro} from 'react-icons/fa';
 
 class SideDrawer extends React.Component {
   constructor(props) {
@@ -19,11 +19,11 @@ class SideDrawer extends React.Component {
   }
 
   onMouseover = (e) => {
-    if (e.currentTarget.classList.contains("first")) {
+    if (e.currentTarget.classList.contains('first')) {
       this.setState({homeText: 'Go to Homepage'})
-    } else if (e.currentTarget.classList.contains("second")) {
+    } else if (e.currentTarget.classList.contains('second')) {
       this.setState({shopText: "Want to buy a photo? That's THE place."})
-    } else if (e.currentTarget.classList.contains("third")) {
+    } else if (e.currentTarget.classList.contains('third')) {
       this.setState({cartText: "Want to check what you're about to buy?"})
     }
 
@@ -121,13 +121,13 @@ const Navigation = styled.nav `
   box-shadow: 1px 0px 6px rgba(0, 0, 0, .5);
   z-index: 200;
   transition: 0.25s;
-  transform: translateX(${({state}) => (state === "entering" || state === "entered" ? 0 : -101)}%);
+  transform: translateX(${({state}) => (state === 'entering' || state === 'entered' ? 0 : -101)}%);
     @media (max-width: 414px) {
       padding-top: unset;
       height: 100%;
       width: 100%;
       max-width: unset;
-      transform: translateY(${ ({state}) => (state === "entering" || state === "entered" ? 0 : -100)}%);
+      transform: translateY(${ ({state}) => (state === 'entering' || state === 'entered' ? 0 : -100)}%);
     }
 `
 
@@ -143,7 +143,7 @@ const NavigationMobile = styled.nav `
   box-shadow: 1px 0px 6px rgba(0, 0, 0, .5);
   z-index: 200;
   transition: 0.25s;
-  transform: translateY(${({state}) => (state === "entering" || state === "entered" ? 0 : -101)}%);
+  transform: translateY(${({state}) => (state === 'entering' || state === 'entered' ? 0 : -101)}%);
 
     @media (min-width: 415px) {
       padding-top: unset;
@@ -151,7 +151,7 @@ const NavigationMobile = styled.nav `
       width: 70%;
       max-width: 350px;
       right: -350px;
-      transform: translateX(${ ({state}) => (state === "entering" || state === "entered" ? -100 : 0)}%);
+      transform: translateX(${ ({state}) => (state === 'entering' || state === 'entered' ? -100 : 0)}%);
     }
 `
 

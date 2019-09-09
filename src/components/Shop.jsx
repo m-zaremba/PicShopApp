@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { addToCart } from './actions/cartActions.js';
 import styled from 'styled-components';
 
-import {IoIosClose, IoIosSearch} from "react-icons/io";
+import {IoIosClose, IoIosSearch} from 'react-icons/io';
 
 
 class Shop extends React.Component {
@@ -18,7 +18,8 @@ class Shop extends React.Component {
     buyPhotoPrev: null,
     buyItemNumber: null,
     filterVal: '',
-    filterTag: ''
+    filterTag: '',
+    selectedOption: 'option1',
   }
 
 
@@ -97,19 +98,35 @@ class Shop extends React.Component {
    }
 
    handleTagButtonClick = (e) => {
+     if(e.target.innerText !== 'All'){
+       this.setState({
+         filterVal: e.target.innerText.toLowerCase(),
+         filterTag: e.target.innerText.toLowerCase()
+       })
+     } else {
+       this.setState({
+         filterVal: '',
+         filterTag: ''
+       })
+     }
+   }
+
+   handleOptionChange = changeEvent => {
      this.setState({
-       filterVal: e.target.innerText.toLowerCase(),
-       filterTag: e.target.innerText.toLowerCase()
+       selectedOption: changeEvent.target.value
      })
    }
 
 
    render(){
 
+     let filterTag = this.state.filterTag;
+     let imageTags;
+
        let itemList = this.props.items.map(item=>{
 
-         let filterTag = this.state.filterTag;
-         let imageTags = item.tag.split(',');
+         //let filterTag = this.state.filterTag;
+         imageTags = item.tag.split(',');
 
          //console.log(imageTags);
 
@@ -121,7 +138,7 @@ class Shop extends React.Component {
                  </div>
                  <div>
                    <p>Author: {item.author}</p>
-                   {item.id === this.state.itemToShowId ? <Div><Button to="/" onClick={()=>{this.handleShowBuyPopup(item)}}>Buying Options</Button></Div> : <Div>Buy from {item.price} $</Div>}
+                   {item.id === this.state.itemToShowId ? <Div><Button to='/' onClick={()=>{this.handleShowBuyPopup(item)}}>Buying Options</Button></Div> : <Div>Buy from {item.price} $</Div>}
                  </div>
                </ShopItem>
            )
@@ -133,10 +150,12 @@ class Shop extends React.Component {
                  </div>
                  <div>
                    <p>Author: {item.author}</p>
-                   {item.id === this.state.itemToShowId ? <Div><Button to="/" onClick={()=>{this.handleShowBuyPopup(item)}}>Buying Options</Button></Div> : <Div>Buy from {item.price} $</Div>}
+                   {item.id === this.state.itemToShowId ? <Div><Button to='/' onClick={()=>{this.handleShowBuyPopup(item)}}>Buying Options</Button></Div> : <Div>Buy from {item.price} $</Div>}
                  </div>
                </ShopItem>
            )
+         } else {
+           return null
          }
 
 
@@ -157,9 +176,52 @@ class Shop extends React.Component {
             <BuyPopupWrapper>
               <StyledCloseIcon onClick={this.handleHideBuyPopup}/>
               <div>
-                <img src={this.state.buyPhotoPrev} alt="none"/>
+                <img src={this.state.buyPhotoPrev} alt='none'/>
                 <div>
-                  <Button to="/" onClick={()=>{this.handleBuy(); this.setState({showPopup: false})}}>Buy</Button>
+                  <div className='form-check'>
+                    <label>
+                      <input
+                        type='radio'
+                        name='pic-options'
+                        value='JPG'
+                        checked={this.state.selectedOption === 'JPG'}
+                        className='form-check-input'
+                        onChange={this.handleOptionChange}
+                      />
+                      JPG
+                    </label>
+                  </div>
+
+                  <div className='form-check'>
+                    <label>
+                      <input
+                        type='radio'
+                        name='pic-options'
+                        value='TIFF'
+                        checked={this.state.selectedOption === 'TIFF'}
+                        className='form-check-input'
+                        onChange={this.handleOptionChange}
+                      />
+                      TIFF
+                    </label>
+                  </div>
+
+                  <div className='form-check'>
+                    <label>
+                      <input
+                        type='radio'
+                        name='pic-options'
+                        value='RAW'
+                        checked={this.state.selectedOption === 'RAW'}
+                        className='form-check-input'
+                        onChange={this.handleOptionChange}
+                      />
+                      RAW
+                    </label>
+                  </div>
+                </div>
+                <div>
+                  <Button to='/' onClick={()=>{this.handleBuy(); this.setState({showPopup: false})}}>Buy</Button>
                 </div>
               </div>
             </BuyPopupWrapper>
@@ -176,6 +238,7 @@ class Shop extends React.Component {
                   <Input type='text' name='filer' placeholder='Search photos' value={this.state.filterVal} onChange={this.handleFilterChange} onKeyPress={this.handleFilterEnterPress}/>
                 </FilterWrapper>
                 <ButtonsWrapper>
+                  <FilterButton onClick={this.handleTagButtonClick}>All</FilterButton>
                   <FilterButton onClick={this.handleTagButtonClick}>Nature</FilterButton>
                   <FilterButton onClick={this.handleTagButtonClick}>People</FilterButton>
                   <FilterButton onClick={this.handleTagButtonClick}>Animal</FilterButton>
@@ -209,6 +272,7 @@ export default connect (mapStateToProps, mapDispatchToProps)(Shop);
 const ShopMainContainer = styled.div`
   width: 100%;
   background-color: white;
+  margin-top: 2em;
 `
 
 const PreviewMainContainer = styled.div`
@@ -364,7 +428,6 @@ const ButtonsWrapper = styled.div`
   justify-content: space-between;
   margin: 0 27px;
   flex-wrap: wrap;
-  flex-direction: row;
 `
 
 const FilterButton = styled.button`

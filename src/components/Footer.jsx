@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
-import {FaFacebookSquare, FaTwitterSquare, FaPinterestSquare, FaInstagram} from "react-icons/fa";
+import {FaFacebookSquare, FaTwitterSquare, FaPinterestSquare, FaInstagram} from 'react-icons/fa';
 
 const Footer = (props) => {
 
@@ -11,16 +11,16 @@ const Footer = (props) => {
          <FooterWrapper>
            <FooterMotto>Not by chance. By choice.</FooterMotto>
            <SocialIcons>
-             <StyledAnchor href="https://www.facebook.com"><FaFacebookSquare/></StyledAnchor>
-             <StyledAnchor href="https://www.twitter.com"><FaTwitterSquare/></StyledAnchor>
-             <StyledAnchor href="https://www.pinterest.com"><FaPinterestSquare/></StyledAnchor>
-             <StyledAnchor href="https://www.instagram.com"><FaInstagram/></StyledAnchor>
+             <StyledAnchor href='https://www.facebook.com'><FaFacebookSquare/></StyledAnchor>
+             <StyledAnchor href='https://www.twitter.com'><FaTwitterSquare/></StyledAnchor>
+             <StyledAnchor href='https://www.pinterest.com'><FaPinterestSquare/></StyledAnchor>
+             <StyledAnchor href='https://www.instagram.com'><FaInstagram/></StyledAnchor>
            </SocialIcons>
            <FooterCreditsWrapper>
              <CopyrightSpan>&copy;2019 Warsaw Silvergraph Studio</CopyrightSpan>
-             <StyledLink to='/'>Contact</StyledLink>
-             <StyledLink to='/'>FAQ</StyledLink>
-             <StyledLink to='/'>Sitemap</StyledLink>
+             <StyledLink to='/contact'>Contact</StyledLink>
+             <StyledLink to='/faq'>FAQ</StyledLink>
+             <StyledLink to='/sitemap'>Sitemap</StyledLink>
            </FooterCreditsWrapper>
          </FooterWrapper>
        </FooterMainContainer>

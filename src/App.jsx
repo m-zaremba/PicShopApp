@@ -9,6 +9,7 @@ import Cart from './components/Cart';
 import SideDrawer from './components/navigation/SideDrawer';
 import Backshadow from './components/navigation/Backshadow';
 import Footer from './components/Footer';
+import Header from './components/Header';
 
 
 class App extends React.Component {
@@ -43,6 +44,7 @@ class App extends React.Component {
      return (
          <BrowserRouter>
            <MainContainer>
+             <Header />
              <SideDrawer animate={this.state.drawerAnimate} hamburgerClick={this.handleSideDrawerToggleCLick} click={this.handleBackshadowClick}/>
              {isMobile ? null : backShadow}
              <Switch>

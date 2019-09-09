@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { MdDehaze } from "react-icons/md";
+import { MdDehaze } from 'react-icons/md';
 
 
 
@@ -70,7 +70,7 @@ const ButtonVariant = styled.button`
 const NavLogoLeft = styled.div`
   width: 70px;
   font-size: 1.5em;
-  background-color: rgb(255, 222, 0);
+  background-color: white;
   color: black;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -87,7 +87,7 @@ const NavLogoLeft = styled.div`
 const NavLogoLeftVariant = styled.div`
   width: 40px;
   height: 40px;
-  background-color: rgb(255, 222, 0);
+  background-color: white;
   box-shadow: inset 10px 0 9px -10px rgba(0,0,0,0.7);
 
   @media (max-width: 414px) {
