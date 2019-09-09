@@ -96,6 +96,13 @@ class Shop extends React.Component {
      }
    }
 
+   handleTagButtonClick = (e) => {
+     this.setState({
+       filterVal: e.target.innerText.toLowerCase(),
+       filterTag: e.target.innerText.toLowerCase()
+     })
+   }
+
 
    render(){
 
@@ -168,6 +175,13 @@ class Shop extends React.Component {
                   <StyledSearchIcon onClick={this.handleFilterButtonClick}>Find</StyledSearchIcon>
                   <Input type='text' name='filer' placeholder='Search photos' value={this.state.filterVal} onChange={this.handleFilterChange} onKeyPress={this.handleFilterEnterPress}/>
                 </FilterWrapper>
+                <ButtonsWrapper>
+                  <FilterButton onClick={this.handleTagButtonClick}>Nature</FilterButton>
+                  <FilterButton onClick={this.handleTagButtonClick}>People</FilterButton>
+                  <FilterButton onClick={this.handleTagButtonClick}>Animal</FilterButton>
+                  <FilterButton onClick={this.handleTagButtonClick}>Urban</FilterButton>
+                  <FilterButton onClick={this.handleTagButtonClick}>Advertisement</FilterButton>
+                </ButtonsWrapper>
                 <ShopItemWrapper>
                   {itemList}
                 </ShopItemWrapper>
@@ -343,4 +357,31 @@ const Input = styled.input`
 const StyledSearchIcon = styled(IoIosSearch)`
   font-size: 3em;
   margin: 0 0;
+`
+
+const ButtonsWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin: 0 27px;
+  flex-wrap: wrap;
+  flex-direction: row;
+`
+
+const FilterButton = styled.button`
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1em;
+  letter-spacing: 2px;
+  border: none;
+  background-color: rgb(255, 222, 0);
+  padding: .8em 20px;
+  outline: none;
+  flex: 1;
+  margin: 5px 5px;
+
+  &:hover {
+    transition: .3s;
+    color: white;
+    background-color: black;
+    cursor: pointer;
+  }
 `
