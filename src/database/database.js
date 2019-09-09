@@ -8,7 +8,7 @@ const imageDatabase =  [
     {id:7, author:'Jordan McQueen', tag: 'nature,mountains,forest', price:5, img: 'https://picsum.photos/id/1037/1000/670'},
     {id:8, author:'Christian Joudrey', tag: 'nature,mountains,forest', price:5, img: 'https://picsum.photos/id/1043/1000/670'},
     {id:9, author:'Rosan Harmens', tag: 'nature,ocean,sea,island', price:4, img: 'https://picsum.photos/id/1049/1000/670'},
-    {id:10, author:'Arvee Marie', tag: 'nature,flowers', price:160, img:3 'https://picsum.photos/id/106/1000/670'},
+    {id:10, author:'Arvee Marie', tag: 'nature,flowers', price:3, img: 'https://picsum.photos/id/106/1000/670'},
     {id:11, author:'veeterzy', tag: 'nature,strawberries', price:3, img: 'https://picsum.photos/id/1080/1000/670'},
     {id:12, author:'zwaddi', tag: 'nature,autumn,meadow', price:3, img: 'https://picsum.photos/id/109/1000/670'},
     {id:13, author:'Zugr', tag: 'nature,meadow', price:3, img: 'https://picsum.photos/id/112/1000/670'},
