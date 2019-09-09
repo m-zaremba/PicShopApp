@@ -19,7 +19,7 @@ class Shop extends React.Component {
     buyItemNumber: null,
     filterVal: '',
     filterTag: '',
-    selectedOption: 'option1',
+    selectedOption: 'JPG',
   }
 
 
