@@ -14,5 +14,6 @@ const Div = styled.div`
   height: 100%;
   background-color: rgba(0, 0, 0, .45);
   z-index: 100;
-
+  top: 0;
+  left: 0;
 `

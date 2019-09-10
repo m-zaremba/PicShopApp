@@ -34,6 +34,7 @@ class Cart extends React.Component{
                             <span>{item.author}</span>
                             <p>{item.tag}</p>
                             <p><b>Price: {item.price}$</b></p>
+                            <p><b>File type: {item.format}</b></p>
                             <p>
                               <b>Quantity: {item.quantity}</b>
                             </p>

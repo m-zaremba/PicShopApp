@@ -39,7 +39,15 @@ class Shop extends React.Component {
    }
 
    handleBuy = () => {
-     this.props.addToCart(this.state.buyItemNumber);
+     if(this.state.selectedOption === 'JPG'){
+       this.props.addToCart(this.state.buyItemNumber);
+     } else {
+       this.props.addToCart(this.state.buyItemNumber + this.state.selectedOption);
+     }
+
+     this.setState({
+       selectedOption: 'JPG',
+     })
    }
 
    handleBuyButtonShow = (id) => {
@@ -125,38 +133,35 @@ class Shop extends React.Component {
 
        let itemList = this.props.items.map(item=>{
 
-         //let filterTag = this.state.filterTag;
-         imageTags = item.tag.split(',');
+           imageTags = item.tag.split(',');
 
-         //console.log(imageTags);
-
-         if (imageTags.indexOf(filterTag) > -1) {
-           return(
-               <ShopItem key={item.id} onMouseEnter={() => {this.handleBuyButtonShow(item.id)}} onMouseLeave={() => {this.handleBuyButtonShow()}}>
-                 <div>
-                   <Img src={item.img} alt={item.tag} onClick={() => {this.handlePhotoPreview(item.img)}}/>
-                 </div>
-                 <div>
-                   <p>Author: {item.author}</p>
-                   {item.id === this.state.itemToShowId ? <Div><Button to='/' onClick={()=>{this.handleShowBuyPopup(item)}}>Buying Options</Button></Div> : <Div>Buy from {item.price} $</Div>}
-                 </div>
-               </ShopItem>
-           )
-         } else if (this.state.filterTag === '' || this.state.filterVal === '') {
-           return(
-               <ShopItem key={item.id} onMouseEnter={() => {this.handleBuyButtonShow(item.id)}} onMouseLeave={() => {this.handleBuyButtonShow()}}>
-                 <div>
-                   <Img src={item.img} alt={item.tag} onClick={() => {this.handlePhotoPreview(item.img)}}/>
-                 </div>
-                 <div>
-                   <p>Author: {item.author}</p>
-                   {item.id === this.state.itemToShowId ? <Div><Button to='/' onClick={()=>{this.handleShowBuyPopup(item)}}>Buying Options</Button></Div> : <Div>Buy from {item.price} $</Div>}
-                 </div>
-               </ShopItem>
-           )
-         } else {
-           return null
-         }
+           if (imageTags.indexOf(filterTag) > -1 && typeof item.id === 'number') {
+             return(
+                 <ShopItem key={item.id} onMouseEnter={() => {this.handleBuyButtonShow(item.id)}} onMouseLeave={() => {this.handleBuyButtonShow()}}>
+                   <div>
+                     <Img src={item.img} alt={item.tag} onClick={() => {this.handlePhotoPreview(item.img)}}/>
+                   </div>
+                   <div>
+                     <p>Author: {item.author}</p>
+                     {item.id === this.state.itemToShowId ? <Div><Button to='/' onClick={()=>{this.handleShowBuyPopup(item)}}>Buying Options</Button></Div> : <Div>Buy from {item.price} $</Div>}
+                   </div>
+                 </ShopItem>
+             )
+           } else if ((this.state.filterTag === '' || this.state.filterVal === '') && typeof item.id === 'number') {
+             return(
+                 <ShopItem key={item.id} onMouseEnter={() => {this.handleBuyButtonShow(item.id)}} onMouseLeave={() => {this.handleBuyButtonShow()}}>
+                   <div>
+                     <Img src={item.img} alt={item.tag} onClick={() => {this.handlePhotoPreview(item.img)}}/>
+                   </div>
+                   <div>
+                     <p>Author: {item.author}</p>
+                     {item.id === this.state.itemToShowId ? <Div><Button to='/' onClick={()=>{this.handleShowBuyPopup(item)}}>Buying Options</Button></Div> : <Div>Buy from {item.price} $</Div>}
+                   </div>
+                 </ShopItem>
+             )
+           } else {
+             return null
+           }
 
 
         })
@@ -202,7 +207,7 @@ class Shop extends React.Component {
                         className='form-check-input'
                         onChange={this.handleOptionChange}
                       />
-                      TIFF
+                      TIFF (+2$)
                     </label>
                   </div>
 
@@ -216,7 +221,7 @@ class Shop extends React.Component {
                         className='form-check-input'
                         onChange={this.handleOptionChange}
                       />
-                      RAW
+                      RAW (+4$)
                     </label>
                   </div>
                 </div>

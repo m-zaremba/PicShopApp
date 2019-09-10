@@ -70,7 +70,7 @@ const ButtonVariant = styled.button`
 const NavLogoLeft = styled.div`
   width: 70px;
   font-size: 1.5em;
-  background-color: white;
+  background-color: rgb(255, 222, 0);
   color: black;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -87,7 +87,7 @@ const NavLogoLeft = styled.div`
 const NavLogoLeftVariant = styled.div`
   width: 40px;
   height: 40px;
-  background-color: white;
+  background-color: rgb(255, 222, 0);
   box-shadow: inset 10px 0 9px -10px rgba(0,0,0,0.7);
 
   @media (max-width: 414px) {
