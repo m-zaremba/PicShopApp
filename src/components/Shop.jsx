@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { addToCart } from './actions/cartActions.js';
 import styled from 'styled-components';
 
+import Header from './Header';
+
 import {IoIosClose, IoIosSearch} from 'react-icons/io';
 
 
@@ -233,7 +235,18 @@ class Shop extends React.Component {
           </BuyPopupMainContainer>
         }
 
+        const shopHeaderText = <>
+          <HeaderBig>SEARCH</HeaderBig>
+          <HeaderSubTextWrapper>
+            <HeaderSmall>Choose.</HeaderSmall>
+            <HeaderSmall>Click.</HeaderSmall>
+            <HeaderSmall>Buy.</HeaderSmall>
+          </HeaderSubTextWrapper>
+        </>;
+
         return(
+          <>
+            <Header headerText={shopHeaderText}/>
             <ShopMainContainer>
               {photoPreview}
               {buyPopup}
@@ -255,6 +268,7 @@ class Shop extends React.Component {
                 </ShopItemWrapper>
               </ShopWrapper>
             </ShopMainContainer>
+          </>
         )
     }
 }
@@ -452,4 +466,23 @@ const FilterButton = styled.button`
     background-color: black;
     cursor: pointer;
   }
+`
+
+const HeaderBig = styled.span`
+  font-size: 2.2em;
+  font-weight: bold;
+  letter-spacing: 10vw;
+  text-indent: 10vw;
+  display: inline-block;
+`
+
+const HeaderSubTextWrapper = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+`
+
+const HeaderSmall = styled.span`
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: .5em;
 `
