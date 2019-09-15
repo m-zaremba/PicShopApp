@@ -4,43 +4,35 @@ import styled from 'styled-components';
 
 const Header = (props) => {
 
-  // render(){
-
-    let headerText = '';
-
-    if (window.location.pathname === '/') {
-      headerText = 'Best Shop. Best Photos. Best Photographers.';
-    } else if (window.location.pathname === '/shop') {
-      headerText = 'Choose Your Photos.';
-    } else {
-      headerText = 'Wanna Buy...';
-    }
-
-
     return (
       <HeaderMainContainer>
         <HeaderWrapper>
-          <HeaderMotto>{headerText}</HeaderMotto>
+          <HeaderMotto>{props.headerText}</HeaderMotto>
         </HeaderWrapper>
+        <Svg viewBox="0 0 100 100" preserveAspectRatio="none">
+          <polygon fill="white" points="0,0 0,100 50,100 100,100 100,0 50,100" />
+        </Svg>
       </HeaderMainContainer>
-
-
     )
 
-  // }
  }
 
  export default Header;
 
-const HeaderMainContainer = styled.footer`
+const HeaderMainContainer = styled.header`
   background-color: rgb(255, 222, 0);
   height: auto;
   text-align: center;
-  padding: 6em 10px;
+  padding-top: 3em;
+  padding-bottom: 6em;
+  padding-left: 10px;
+  padding-right: 10px;
   color: black;
+  position: relative;
 
   @media (max-width: 768px) {
-    padding: 2em 10px;
+    padding-top: 2em;
+    padding-bottom: 4em;
   }
 `
 
@@ -60,5 +52,17 @@ const HeaderMotto = styled.span`
 
   @media (max-width: 768px) {
     font-size: 2em;
+  }
+`
+
+const Svg = styled.svg`
+  width: 100%;
+  height: 3em;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  @media (max-width: 768px) {
+    height: 2em;
   }
 `

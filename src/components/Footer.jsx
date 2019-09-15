@@ -22,6 +22,9 @@ const Footer = (props) => {
              <StyledLink to='/faq'>FAQ</StyledLink>
              <StyledLink to='/sitemap'>Sitemap</StyledLink>
            </FooterCreditsWrapper>
+           <Svg viewBox="0 0 100 100" preserveAspectRatio="none">
+             <polygon fill="white" points="0,0 0,100 50,0 100,100 100,0 50,0" />
+           </Svg>
          </FooterWrapper>
        </FooterMainContainer>
 
@@ -33,11 +36,20 @@ const Footer = (props) => {
  export default Footer;
 
 const FooterMainContainer = styled.footer`
+  position: relative;
   background-color: black;
   height: auto;
   text-align: center;
   padding: 15px 10px;
+  padding-top: 4em;
+  padding-bottom: 1em;
+  padding-left: 10px;
+  padding-right: 10px;
   color: rgb(255, 222, 0);
+
+  @media (max-width: 768px) {
+    padding-top: 2em;
+  }
 `
 
 const FooterWrapper = styled.div`
@@ -97,4 +109,16 @@ const StyledAnchor = styled.a`
     text-decoration: none;
     color: rgb(255, 222, 0);
   };
+`
+
+const Svg = styled.svg`
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 3em;
+  width: 100%;
+
+  @media (max-width: 768px) {
+    height: 2em;
+  }
 `
