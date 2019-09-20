@@ -9,7 +9,6 @@ import Cart from './components/Cart';
 import SideDrawer from './components/navigation/SideDrawer';
 import Backshadow from './components/navigation/Backshadow';
 import Footer from './components/Footer';
-// import Header from './components/Header';
 
 
 class App extends React.Component {
@@ -44,7 +43,6 @@ class App extends React.Component {
      return (
          <BrowserRouter>
            <MainContainer>
-             {/* <Header /> */}
              <SideDrawer animate={this.state.drawerAnimate} hamburgerClick={this.handleSideDrawerToggleCLick} click={this.handleBackshadowClick}/>
              {isMobile ? null : backShadow}
              <Switch>
@@ -62,8 +60,7 @@ class App extends React.Component {
 export default App;
 
 const MainContainer = styled.div`
-  ${'' /* background-color: rgba(255, 223, 6, 0.96); */}
-  ${'' /* max-width: 1020px; */}
   width: 100%;
   text-align: center;
+  font-family: 'Montserrat', sans-serif;
 `

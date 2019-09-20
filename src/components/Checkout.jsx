@@ -1,17 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 
 class Checkout extends React.Component{
 
   render(){
 
       return(
-          <div className='container'>
-            <div className='collection'>
+          <div>
+            <TotalCostWrapper>
               <b>Total: {this.props.total} $</b>
-            </div>
-            <div className='checkout'>
-              <button className='waves-effect waves-light btn'>Checkout</button>
+            </TotalCostWrapper>
+            <div>
+              <Button> {`>>>`} Checkout {`<<<`} </Button>
             </div>
           </div>
       )
@@ -32,4 +33,23 @@ const mapDispatchToProps = (dispatch)=>{
   }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Checkout)
+export default connect(mapStateToProps,mapDispatchToProps)(Checkout);
+
+const Button = styled.button`
+  border: none;
+  background-color: rgb(255, 222, 0);
+  padding: 5px 20px;
+  outline: none;
+  margin: 1em 0;
+
+  &:hover {
+    transition: .3s;
+    color: white;
+    background-color: black;
+    cursor: pointer;
+  }
+`
+
+const TotalCostWrapper = styled.div`
+  padding: 1em 0;
+`

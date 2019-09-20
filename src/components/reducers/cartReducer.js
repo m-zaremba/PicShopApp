@@ -15,10 +15,10 @@ const cartReducer= (state = initState, action)=>{
 
          let existed_item = state.addedItems.find(item=> action.id === item.id)
          if (existed_item) {
-            addedItem.quantity += 1
+            addedItem.quantity = 1
              return{
                 ...state,
-                 total: state.total + addedItem.price
+                 total: state.total
                   }
         } else {
             addedItem.quantity = 1;

@@ -39,6 +39,7 @@ class Shop extends React.Component {
    handleHideBuyPopup = () => {
      this.setState({
        showPopup: false,
+       selectedOption: 'JPG',
      })
    }
 
@@ -509,9 +510,14 @@ const FilterButton = styled.button`
 const HeaderBig = styled.span`
   font-size: 2.2em;
   font-weight: bold;
-  letter-spacing: .3em;
-  text-indent: .3em;
+  letter-spacing: .15em;
+  text-indent: .15em;
   display: inline-block;
+
+  @media (min-width: 321px) and (max-width: 415px) {
+    letter-spacing: .3em;
+    text-indent: .3em;
+  }
 
   @media (min-width: 416px) {
     letter-spacing: 9vw;
