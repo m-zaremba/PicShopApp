@@ -19,6 +19,7 @@ class Shop extends React.Component {
     buyAuthor: null,
     buyPhotoPrev: null,
     buyItemNumber: null,
+    buyItemPrice: null,
     filterVal: '',
     filterTag: '',
     selectedOption: 'JPG',
@@ -31,6 +32,7 @@ class Shop extends React.Component {
        buyPhotoPrev: item.img,
        showPopup: true,
        buyItemNumber: item.id,
+       buyItemPrice: item.price,
      })
    }
 
@@ -133,6 +135,9 @@ class Shop extends React.Component {
      let filterTag = this.state.filterTag;
      let imageTags;
 
+     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+
        let itemList = this.props.items.map(item=>{
 
            imageTags = item.tag.split(',');
@@ -145,7 +150,7 @@ class Shop extends React.Component {
                    </div>
                    <div>
                      <p>Author: {item.author}</p>
-                     {item.id === this.state.itemToShowId ? <Div><Button to='/' onClick={()=>{this.handleShowBuyPopup(item)}}>Buying Options</Button></Div> : <Div>Buy from {item.price} $</Div>}
+                     {item.id === this.state.itemToShowId || isMobile ? <Div><Button to='/' onClick={()=>{this.handleShowBuyPopup(item)}}>Buying Options</Button></Div> : <Div>Buy from {item.price} $</Div>}
                    </div>
                  </ShopItem>
              )
@@ -157,7 +162,7 @@ class Shop extends React.Component {
                    </div>
                    <div>
                      <p>Author: {item.author}</p>
-                     {item.id === this.state.itemToShowId ? <Div><Button to='/' onClick={()=>{this.handleShowBuyPopup(item)}}>Buying Options</Button></Div> : <Div>Buy from {item.price} $</Div>}
+                     {item.id === this.state.itemToShowId || isMobile ? <Div><Button to='/' onClick={()=>{this.handleShowBuyPopup(item)}}>Buying Options</Button></Div> : <Div>Buy from {item.price} $</Div>}
                    </div>
                  </ShopItem>
              )
@@ -180,58 +185,57 @@ class Shop extends React.Component {
 
         if(this.state.showPopup) {
           buyPopup = <BuyPopupMainContainer>
-            <BuyPopupWrapper>
+            <BuyPopupBackgroundWrapper>
               <StyledCloseIcon onClick={this.handleHideBuyPopup}/>
-              <div>
-                <img src={this.state.buyPhotoPrev} alt='none'/>
-                <div>
-                  <div className='form-check'>
-                    <label>
-                      <input
-                        type='radio'
-                        name='pic-options'
-                        value='JPG'
-                        checked={this.state.selectedOption === 'JPG'}
-                        className='form-check-input'
-                        onChange={this.handleOptionChange}
-                      />
-                      JPG
-                    </label>
-                  </div>
+              <BuyImgOptionsWrapper>
+                <ImgBuyPreview src={this.state.buyPhotoPrev} alt='none'/>
+                <OptionsWrapper>
+                  <Span>Choose filetype</Span>
+                  <Option>
+                    <RadioButton
+                      type='radio'
+                      name='pic-options'
+                      value='JPG'
+                      checked={this.state.selectedOption === 'JPG'}
+                      className='form-check-input'
+                      onChange={this.handleOptionChange}
+                    />
+                    <RadioButtonLabel />
+                    <RadioButtonSpan>JPG ({this.state.buyItemPrice} $)</RadioButtonSpan>
+                  </Option>
 
-                  <div className='form-check'>
-                    <label>
-                      <input
-                        type='radio'
-                        name='pic-options'
-                        value='TIFF'
-                        checked={this.state.selectedOption === 'TIFF'}
-                        className='form-check-input'
-                        onChange={this.handleOptionChange}
-                      />
-                      TIFF (+2$)
-                    </label>
-                  </div>
+                  <Option>
+                    <RadioButton
+                      type='radio'
+                      name='pic-options'
+                      value='TIFF'
+                      checked={this.state.selectedOption === 'TIFF'}
+                      className='form-check-input'
+                      onChange={this.handleOptionChange}
+                    />
+                    <RadioButtonLabel />
+                    <RadioButtonSpan>TIFF (+2$)</RadioButtonSpan>
+                  </Option>
 
-                  <div className='form-check'>
-                    <label>
-                      <input
-                        type='radio'
-                        name='pic-options'
-                        value='RAW'
-                        checked={this.state.selectedOption === 'RAW'}
-                        className='form-check-input'
-                        onChange={this.handleOptionChange}
-                      />
-                      RAW (+4$)
-                    </label>
-                  </div>
-                </div>
-                <div>
-                  <Button to='/' onClick={()=>{this.handleBuy(); this.setState({showPopup: false})}}>Buy</Button>
-                </div>
-              </div>
-            </BuyPopupWrapper>
+                  <Option>
+                    <RadioButton
+                      type='radio'
+                      name='pic-options'
+                      value='RAW'
+                      checked={this.state.selectedOption === 'RAW'}
+                      className='form-check-input'
+                      onChange={this.handleOptionChange}
+                    />
+                    <RadioButtonLabel />
+                    <RadioButtonSpan>RAW (+4$)</RadioButtonSpan>
+                  </Option>
+                  <BuyButton to='/' onClick={()=>{this.handleBuy(); this.setState({showPopup: false})}}>Buy</BuyButton>
+                </OptionsWrapper>
+                {/* <BuyButtonWrapper>
+                  <BuyButton to='/' onClick={()=>{this.handleBuy(); this.setState({showPopup: false})}}>Buy</BuyButton>
+                </BuyButtonWrapper> */}
+              </BuyImgOptionsWrapper>
+            </BuyPopupBackgroundWrapper>
           </BuyPopupMainContainer>
         }
 
@@ -304,10 +308,7 @@ const PreviewMainContainer = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-
-  &:hover {
-    cursor: pointer;
-  }
+  z-index: 401;
 `
 
 const BuyPopupMainContainer = styled.div`
@@ -320,12 +321,13 @@ const BuyPopupMainContainer = styled.div`
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 401;
 `
 
-const BuyPopupWrapper = styled.div`
+const BuyPopupBackgroundWrapper = styled.div`
   background-color: white;
-  width: 50%;
-  padding: 2em 2em;
+  width: 100%;
+  padding: 2em 1em;
   position: relative;
 `
 
@@ -379,14 +381,23 @@ const ShopItem = styled.div`
 `
 
 const Img = styled.img`
-  width: 90%;
+  width: 100%;
 
-  @media (max-width: 768px) {
-    width: 100%;
+  @media (min-width: 769px) {
+    width: 90%;
   }
 
   &:hover {
     cursor: pointer;
+  }
+`
+
+const ImgBuyPreview = styled.img`
+  width: 100%;
+
+  @media (min-width: 769px) {
+    height: 35vh;
+    width: auto;
   }
 `
 
@@ -404,6 +415,29 @@ const Button = styled.button`
   }
 `
 
+// const BuyButtonWrapper = styled.div`
+//   width: 100%;
+// `
+
+const BuyButton = styled.button`
+  border: none;
+  background-color: rgb(255, 222, 0);
+  padding: 10px 20px;
+  outline: none;
+  width: 100%;
+
+  &:hover {
+    transition: .3s;
+    color: white;
+    background-color: black;
+    cursor: pointer;
+  }
+
+  @media (min-width: 769px) {
+    width: 40%;
+  }
+`
+
 const Div = styled.div`
   padding: 10px 0;
   height: 1.5em;
@@ -416,6 +450,10 @@ const StyledCloseIcon = styled(IoIosClose)`
   right: 25px;
   top: 25px;
   font-size: 3em;
+
+  &:hover {
+    cursor: pointer;
+  }
 `
 
 const FilterWrapper = styled.div`
@@ -471,9 +509,14 @@ const FilterButton = styled.button`
 const HeaderBig = styled.span`
   font-size: 2.2em;
   font-weight: bold;
-  letter-spacing: 10vw;
-  text-indent: 10vw;
+  letter-spacing: .3em;
+  text-indent: .3em;
   display: inline-block;
+
+  @media (min-width: 416px) {
+    letter-spacing: 9vw;
+    text-indent: 9vw;
+  }
 `
 
 const HeaderSubTextWrapper = styled.div`
@@ -485,4 +528,92 @@ const HeaderSubTextWrapper = styled.div`
 const HeaderSmall = styled.span`
   font-family: 'Open Sans Condensed', sans-serif;
   font-size: .5em;
+`
+
+const BuyImgOptionsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 769px) {
+    flex-direction: row;
+  }
+`
+
+const Option = styled.div`
+  display: flex;
+  align-items: center;
+  height: 48px;
+  position: relative;
+`
+
+const RadioButtonLabel = styled.label`
+  position: absolute;
+  top: 25%;
+  left: 4px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: white;
+  border: 1px solid #bebebe;
+`
+
+const RadioButton = styled.input`
+  position: absolute;
+  left: 4px;
+  opacity: 0;
+  z-index: 1;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+  &:hover ~ ${RadioButtonLabel} {
+    background: #bebebe;
+    &::after {
+      content: "";
+      display: block;
+      border-radius: 50%;
+      width: 12px;
+      height: 12px;
+      margin: 5px;
+      background: #eeeeee;
+    }
+  }
+  &:checked + ${RadioButtonLabel} {
+    background: rgb(255, 222, 0);
+    border: 1px solid rgb(255, 222, 0);
+    &::after {
+      content: "";
+      display: block;
+      border-radius: 50%;
+      width: 12px;
+      height: 12px;
+      margin: 5px;
+      box-shadow: 1px 3px 3px 1px rgba(0, 0, 0, 0.1);
+      background: white;
+    }
+  }
+`
+
+const RadioButtonSpan = styled.span`
+  font-family: 'Montserrat', sans-serif;
+  font-weight: normal;
+  margin: 0 0;
+  padding-left: 2.2em;
+`
+
+const OptionsWrapper = styled.div`
+  width: 60%;
+  padding: 1em 2em;
+
+  @media (min-width: 769px) {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+`
+
+const Span = styled.span`
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
 `
