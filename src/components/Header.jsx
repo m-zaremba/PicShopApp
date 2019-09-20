@@ -47,11 +47,10 @@ const HeaderWrapper = styled.div`
 
 const HeaderMotto = styled.span`
   font-family: 'Open Sans Condensed', sans-serif;
-  font-size: 3em;
-  letter-spacing: .4rem;
+  font-size: 2em;
 
-  @media (max-width: 768px) {
-    font-size: 2em;
+  @media (min-width: 769px) {
+    font-size: 3em;
   }
 `
 

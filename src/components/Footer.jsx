@@ -18,9 +18,9 @@ const Footer = (props) => {
            </SocialIcons>
            <FooterCreditsWrapper>
              <CopyrightSpan>&copy;2019 Warsaw Silvergraph Studio</CopyrightSpan>
-             <StyledLink to='/contact'>Contact</StyledLink>
-             <StyledLink to='/faq'>FAQ</StyledLink>
-             <StyledLink to='/sitemap'>Sitemap</StyledLink>
+             <StyledLink to='/'>Contact</StyledLink>
+             <StyledLink to='/'>FAQ</StyledLink>
+             <StyledLink to='/'>Sitemap</StyledLink>
            </FooterCreditsWrapper>
            <Svg viewBox="0 0 100 100" preserveAspectRatio="none">
              <polygon fill="white" points="0,0 0,100 50,0 100,100 100,0 50,0" />
