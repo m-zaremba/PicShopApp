@@ -1,12 +1,12 @@
 import React from 'react';
 import Header from './Header';
 import styled from 'styled-components';
-
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
 import {IoIosArrowDropleftCircle, IoIosArrowDroprightCircle, IoIosArrowRoundForward, IoIosArrowRoundBack} from 'react-icons/io';
+
+//Custom previous/next element arrows for react-slick-carousel
 
 function NextArrowButton(props) {
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
@@ -17,7 +17,7 @@ function NextArrowButton(props) {
 }
 
 function PreviousArrowButton(props) {
-  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent); //checking if the page is displayed on mobile device
   const {onClick} = props;
   return (
     isMobile ? <PrevArrowMobile onClick={onClick} /> : <PrevArrow onClick={onClick} />
@@ -28,6 +28,7 @@ class Home extends React.Component {
 
    render(){
 
+     //Custom text for Header component
      const homeHeaderText = <>
        <HeaderBig>BEST</HeaderBig>
        <HeaderSubTextWrapper>
@@ -37,10 +38,11 @@ class Home extends React.Component {
        </HeaderSubTextWrapper>
      </>;
 
+     //React-slick-carousel settings
      const settings = {
       dots: true,
-      nextArrow: <NextArrowButton />,
-      prevArrow: <PreviousArrowButton />,
+      nextArrow: <NextArrowButton />, //custom styled Next element arrow
+      prevArrow: <PreviousArrowButton />, //custom styled Previous element arrow
       infinite: true,
       speed: 500,
       autoplaySpeed: 6000,
@@ -102,11 +104,13 @@ class Home extends React.Component {
 
 export default Home;
 
+/* --------------- STYLES --------------- */
+
 const SliderSection = styled.section`
   width: 100%;
   padding: 2em 0;
 
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     max-width: 1200px;
     width: 100%;
   }
@@ -117,6 +121,60 @@ const SliderElement = styled(Slider)`
 
   @media (min-width: 769px) {
     width: 80%;
+  }
+`
+
+const PrevArrowMobile = styled(IoIosArrowDropleftCircle)`
+  background-color: rgb(255, 222, 0);
+  border-radius: 50%;
+  font-size: 3em;
+  color: black;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  cursor: pointer;
+`
+
+const PrevArrow = styled(IoIosArrowRoundBack)`
+  font-size: 4em;
+  color: black;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  cursor: pointer;
+
+  @media (min-width: 769px) {
+    left: -1em;
+  }
+`
+
+const NextArrowMobile = styled(IoIosArrowDroprightCircle)`
+  background-color: rgb(255, 222, 0);
+  border-radius: 50%;
+  font-size: 3em;
+  color: black;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+`
+
+const NextArrow = styled(IoIosArrowRoundForward)`
+  font-size: 4em;
+  color: black;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+
+  @media (min-width: 769px) {
+    right: -1em;
   }
 `
 
@@ -132,7 +190,7 @@ const Info = styled.span`
   display: inline-block;
   padding: 0 3em;
 
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     padding: unset;
     font-size: 2em;
   }
@@ -202,6 +260,8 @@ const Info6Background = styled.div`
   background-image: linear-gradient(45deg, rgb(0, 0, 0) 50%, rgb(255, 255, 255) 50%);
 `
 
+//Home component Header styles
+
 const HeaderBig = styled.span`
   font-size: 2.2em;
   font-weight: bold;
@@ -220,65 +280,14 @@ const HeaderSmall = styled.span`
   font-family: 'Open Sans Condensed', sans-serif;
   font-size: .5em;
 `
-const PrevArrowMobile = styled(IoIosArrowDropleftCircle)`
-  background-color: rgb(255, 222, 0);
-  border-radius: 50%;
-  font-size: 3em;
-  color: black;
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 2;
-  cursor: pointer;
-`
 
-const PrevArrow = styled(IoIosArrowRoundBack)`
-  font-size: 4em;
-  color: black;
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 2;
-  cursor: pointer;
-
-  @media (min-width: 768px) {
-    left: -1em;
-  }
-`
-
-const NextArrowMobile = styled(IoIosArrowDroprightCircle)`
-  background-color: rgb(255, 222, 0);
-  border-radius: 50%;
-  font-size: 3em;
-  color: black;
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
-`
-
-const NextArrow = styled(IoIosArrowRoundForward)`
-  font-size: 4em;
-  color: black;
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
-
-  @media (min-width: 768px) {
-    right: -1em;
-  }
-`
+//Special offers section
 
 const OffersSection = styled.section`
   width: 100%;
   padding: 2em 0;
 
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     max-width: 1200px;
     width: 100%;
   }
@@ -289,10 +298,6 @@ const OffersSctTitle = styled.h2`
   font-size: 1.2em;
   text-align: left;
   padding: 0 10px;
-
-  ${'' /* @media (min-width: 768px) {
-    padding: 0 0;
-  } */}
 `
 
 const OffersTagsContainer = styled.div`
@@ -321,14 +326,12 @@ const Offer = styled.div`
     flex: 1 1 calc(50% - 20px);
     margin: 30px 10px;
     padding: 0 20px;
-    ${'' /* max-width: calc(50% - 20px); */}
   }
 
   @media (min-width: 769px) {
     margin: 20px 10px;
     padding: 0 20px;
     flex: 1 1 calc(33% - 20px);
-    ${'' /* max-width: calc(33% - 20px); */}
   }
 `
 

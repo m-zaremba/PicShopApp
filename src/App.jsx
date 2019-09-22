@@ -46,7 +46,7 @@ class App extends React.Component {
              <SideDrawer animate={this.state.drawerAnimate} hamburgerClick={this.handleSideDrawerToggleCLick} click={this.handleBackshadowClick}/>
              {isMobile ? null : backShadow}
              <Switch>
-               <Route path={process.env.PUBLIC_URL + '/'} component={Home}/>
+               <Route exact path='/' component={Home}/>
                <Route path='/shop' component={Shop}/>
                <Route path='/cart' component={Cart}/>
              </Switch>

@@ -12,7 +12,7 @@ class Checkout extends React.Component{
               <b>Total: {this.props.total} $</b>
             </TotalCostWrapper>
             <div>
-              <Button> {`>>>`} Checkout {`<<<`} </Button>
+              <Button>Checkout</Button>
             </div>
           </div>
       )
@@ -35,12 +35,19 @@ const mapDispatchToProps = (dispatch)=>{
 
 export default connect(mapStateToProps,mapDispatchToProps)(Checkout);
 
+
+/* --------------- STYLES --------------- */
+
 const Button = styled.button`
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2em;
+  font-weight: bold;
   border: none;
   background-color: rgb(255, 222, 0);
   padding: 5px 20px;
   outline: none;
   margin: 1em 0;
+  padding: .8em 1.2em;
 
   &:hover {
     transition: .3s;

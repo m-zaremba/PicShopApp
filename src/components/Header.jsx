@@ -19,29 +19,31 @@ const Header = (props) => {
 
  export default Header;
 
+
+/* --------------- STYLES --------------- */
+
 const HeaderMainContainer = styled.header`
   background-color: rgb(255, 222, 0);
-  height: auto;
+  height: 242px;
   text-align: center;
-  padding-top: 3em;
-  padding-bottom: 6em;
+  padding-top: 2em;
+  padding-bottom: 4em;
   padding-left: 10px;
   padding-right: 10px;
   color: black;
   position: relative;
 
-  @media (max-width: 768px) {
-    padding-top: 2em;
-    padding-bottom: 4em;
+  @media (min-width: 769px) {
+    padding-top: 0;
+    padding-bottom: 6em;
   }
 `
 
 const HeaderWrapper = styled.div`
-  max-width: 1200px;
   width: 100%;
 
-  @media (max-width: 768px) {
-    max-width: unset;
+  @media (min-width: 769px) {
+    max-width: 1200px;
   }
 `
 
@@ -56,12 +58,12 @@ const HeaderMotto = styled.span`
 
 const Svg = styled.svg`
   width: 100%;
-  height: 3em;
+  height: 2em;
   position: absolute;
   bottom: 0;
   left: 0;
 
-  @media (max-width: 768px) {
-    height: 2em;
+  @media (min-width: 769px) {
+    height: 3em;
   }
 `

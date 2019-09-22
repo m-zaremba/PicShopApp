@@ -3,10 +3,11 @@ import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 import {FaFacebookSquare, FaTwitterSquare, FaPinterestSquare, FaInstagram} from 'react-icons/fa';
 
+
 const Footer = (props) => {
 
-
      return (
+
        <FooterMainContainer>
          <FooterWrapper>
            <FooterMotto>Not by chance. By choice.</FooterMotto>
@@ -28,46 +29,46 @@ const Footer = (props) => {
          </FooterWrapper>
        </FooterMainContainer>
 
-
      )
-
  }
 
  export default Footer;
 
+
+/* --------------- STYLES --------------- */
+
 const FooterMainContainer = styled.footer`
   position: relative;
   background-color: black;
-  height: auto;
+  height: 258px;
   text-align: center;
   padding: 15px 10px;
-  padding-top: 4em;
+  padding-top: 2em;
   padding-bottom: 1em;
   padding-left: 10px;
   padding-right: 10px;
   color: rgb(255, 222, 0);
 
-  @media (max-width: 768px) {
-    padding-top: 2em;
+  @media (min-width: 769px) {
+    padding-top: 4em;
   }
 `
 
 const FooterWrapper = styled.div`
-  max-width: 1200px;
   width: 100%;
 
-  @media (max-width: 768px) {
-    max-width: unset;
+  @media (min-width: 769px) {
+    max-width: 1200px;
   }
 `
 
 const FooterMotto = styled.span`
   font-family: 'Open Sans Condensed', sans-serif;
-  font-size: 3em;
+  font-size: 2em;
   letter-spacing: .4rem;
 
-  @media (max-width: 768px) {
-    font-size: 2em;
+  @media (min-width: 769px) {
+    font-size: 3em;
   }
 `
 
@@ -115,10 +116,10 @@ const Svg = styled.svg`
   position: absolute;
   top: 0;
   left: 0;
-  height: 3em;
+  height: 2em;
   width: 100%;
 
-  @media (max-width: 768px) {
-    height: 2em;
+  @media (min-width: 769px) {
+    height: 3em;
   }
 `
