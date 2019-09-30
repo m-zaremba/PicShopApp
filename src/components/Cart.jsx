@@ -51,7 +51,7 @@ class Cart extends React.Component{
       }
 
        const cartHeaderText = <>
-         <HeaderBig>ALMOST</HeaderBig>
+         <HeaderBig><div>A</div><div>L</div><div>M</div><div>O</div><div>S</div><div>T</div></HeaderBig>
          <HeaderSubTextWrapper>
            <HeaderSmall>There.</HeaderSmall>
            <HeaderSmall>Just.</HeaderSmall>
@@ -98,19 +98,8 @@ export default connect(mapStateToProps,mapDispatchToProps)(Cart);
 const HeaderBig = styled.span`
   font-size: 2.2em;
   font-weight: bold;
-  letter-spacing: .15em;
-  text-indent: .15em;
-  display: inline-block;
-
-  @media (min-width: 321px) and (max-width: 415px) {
-    letter-spacing: .24em;
-    text-indent: .24em;
-  }
-
-  @media (min-width: 416px) {
-    letter-spacing: 9vw;
-    text-indent: 9vw;
-  }
+  display: flex;
+  justify-content: space-around;
 `
 
 const HeaderSubTextWrapper = styled.div`

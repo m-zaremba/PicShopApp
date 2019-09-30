@@ -30,7 +30,7 @@ class Home extends React.Component {
 
      //Custom text for Header component
      const homeHeaderText = <>
-       <HeaderBig>BEST</HeaderBig>
+       <HeaderBig><div>B</div><div>E</div><div>S</div><div>T</div></HeaderBig>
        <HeaderSubTextWrapper>
          <HeaderSmall>Photos.</HeaderSmall>
          <HeaderSmall>Photogrphers.</HeaderSmall>
@@ -265,9 +265,8 @@ const Info6Background = styled.div`
 const HeaderBig = styled.span`
   font-size: 2.2em;
   font-weight: bold;
-  letter-spacing: 10vw;
-  text-indent: 10vw;
-  display: inline-block;
+  display: flex;
+  justify-content: space-around;
 `
 
 const HeaderSubTextWrapper = styled.div`

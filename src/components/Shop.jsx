@@ -255,7 +255,7 @@ this.state.filterTag === '' || this.state.filterVal === '' - if no filter phrase
 
         //Custom text for Header component
         const shopHeaderText = <>
-          <HeaderBig>SEARCH</HeaderBig>
+          <HeaderBig><div>S</div><div>E</div><div>A</div><div>R</div><div>C</div><div>H</div></HeaderBig>
           <HeaderSubTextWrapper>
             <HeaderSmall>Choose.</HeaderSmall>
             <HeaderSmall>Click.</HeaderSmall>
@@ -631,19 +631,8 @@ const FilterButton = styled.button`
 const HeaderBig = styled.span`
   font-size: 2.2em;
   font-weight: bold;
-  letter-spacing: .15em;
-  text-indent: .15em;
-  display: inline-block;
-
-  @media (min-width: 321px) and (max-width: 415px) {
-    letter-spacing: .3em;
-    text-indent: .3em;
-  }
-
-  @media (min-width: 416px) {
-    letter-spacing: 9vw;
-    text-indent: 9vw;
-  }
+  display: flex;
+  justify-content: space-around;
 `
 
 const HeaderSubTextWrapper = styled.div`
