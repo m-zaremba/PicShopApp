@@ -4,7 +4,7 @@
 
 PicShop is a simple online-store-like application written in React.js using Redux, React-router, [react-slick-carousel](https://github.com/akiran/react-slick) and [Web Font Loader](https://github.com/typekit/webfontloader).
 
-Live preview [here](https://frosty-mcnulty-bc1a53.netlify.com/).
+Live preview [here](https://tender-jang-05ad84.netlify.com).
 
 ### Installation
 
