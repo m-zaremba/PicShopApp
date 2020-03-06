@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import {FaFacebookSquare, FaTwitterSquare, FaPinterestSquare, FaInstagram} from 'react-icons/fa';
 
 
-const Footer = (props) => {
+const Footer = () => {
 
      return (
 

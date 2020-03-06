@@ -11,7 +11,7 @@ import {IoIosCloseCircle} from "react-icons/io"
 class Cart extends React.Component{
 
     //to remove the item completely
-    handleRemove = (id)=>{
+    handleRemove = (id) => {
         this.props.removeItem(id);
     }
 

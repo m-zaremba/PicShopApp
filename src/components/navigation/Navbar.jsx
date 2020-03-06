@@ -6,11 +6,10 @@ import { MdShoppingCart } from 'react-icons/md';
 
 // import DrawerButton from './DrawerButton';
 
-const Navbar = props => (
+const Navbar = () => (
 
     <NavBar>
       <Wrapper>
-        {/* <div><DrawerButton click={props.hamburgerClick} /></div> */}
         <Link to='/'>The Logo</Link>
 
         <NavList>
